@@ -1,4 +1,9 @@
-    <title>WORLD FOOD ATLAS | 세계 음식 도감 아카이브</title>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE K-FOOD ARCHIVE | 대한민국 전통 음식 도감</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -6,23 +11,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Detail View -->
-    <div id="food-detail-view" class="detail-page" style="display: none;">
+    <!-- Detail View Overlay -->
+    <div id="food-detail-view" class="detail-page" style="display:none;">
         <header class="detail-h">
             <div class="container d-inner">
                 <button id="close-detail" class="back-link"><i class="fas fa-chevron-left"></i> 뒤로가기</button>
-                <div class="d-logo">WORLD <span>ATLAS</span></div>
+                <div class="d-logo">K-FOOD <span>ARCHIVE</span></div>
             </div>
         </header>
         <div class="container d-content">
             <div class="d-grid">
-                <div class="d-img-container"><img id="d-img-target" src="" alt=""></div>
+                <div class="d-img-container">
+                    <img id="d-img-target" src="" alt="Food Detail">
+                </div>
                 <div class="d-info-container">
-                    <span id="d-cat-target" class="d-badge">카테고리</span>
+                    <span id="d-cat-target" class="d-tag">CATEGORY</span>
                     <h1 id="d-name-target">Food Name</h1>
                     <p id="d-desc-target"></p>
                     <div class="d-footer">
-                        <span id="d-price-target" class="d-price" style="font-size: 1.2rem; color: #666; font-weight: 500;">프리미엄 레시피 포함</span>
+                        <span id="d-price-target" class="d-price" style="font-size: 1.2rem; color: #666; font-weight: 500;">K-FOOD 프리미엄 선정</span>
                         <button class="d-btn-buy" style="background:var(--ksh-blue)">지식 공유하기</button>
                     </div>
                 </div>
@@ -35,95 +42,19 @@
         <header class="main-header">
             <div class="top-bar">
                 <div class="container top-inner">
-                    <ul class="top-list">
-                        <li><a href="#">지속가능한 식재료</a></li>
-                        <li><a href="#">셰프 스토리</a></li>
-                        <li><a href="#">뉴스룸</a></li>
-                        <li><a href="support.html">고객지원</a></li>
-                    </ul>
+                    <div class="customer-support"><a href="support.html">고객지원</a></div>
                 </div>
             </div>
             <div class="gnb">
                 <div class="container gnb-inner">
-                    <div class="logo"><a href="#">WORLD <span>ATLAS</span></a></div>
+                    <div class="logo"><a href="index.html">K-FOOD <span>ARCHIVE</span></a></div>
                     <nav class="nav-menu">
                         <ul>
-                            <li class="has-mega"><a href="#grid-korean">한식</a>
-                                <div class="mega-menu">
-                                    <div class="container mega-inner">
-                                        <div class="mega-grid-col">
-                                            <div class="mega-prod-list">
-                                                <div class="m-item food-link" data-id="k1"><img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=200" alt=""><p>전통비빔밥</p></div>
-                                                <div class="m-item food-link" data-id="k2"><img src="잡채.jpg" alt=""><p>잡채</p></div>
-                                                <div class="m-item food-link" data-id="k3"><img src="갈비찜.jpg" alt=""><p>갈비찜</p></div>
-                                                <div class="m-item food-link" data-id="k4"><img src="삼계탕.jpg" alt=""><p>삼계탕</p></div>
-                                                <div class="m-item food-link" data-id="k5"><img src="불고기.webp" alt=""><p>불고기</p></div>
-                                                <div class="m-item food-link" data-id="k6"><img src="떡볶이.jpg" alt=""><p>떡볶이</p></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="has-mega"><a href="#grid-western">양식</a>
-                                <div class="mega-menu">
-                                    <div class="container mega-inner">
-                                        <div class="mega-grid-col">
-                                            <div class="mega-prod-list">
-                                                <div class="m-item food-link" data-id="w1"><img src="안심 스테이크.png" alt=""><p>스테이크</p></div>
-                                                <div class="m-item food-link" data-id="w2"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=200" alt=""><p>피자</p></div>
-                                                <div class="m-item food-link" data-id="w3"><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&q=80&w=200" alt=""><p>파스타</p></div>
-                                                <div class="m-item food-link" data-id="w4"><img src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&q=80&w=200" alt=""><p>샐러드</p></div>
-                                                <div class="m-item food-link" data-id="w5"><img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&q=80&w=200" alt=""><p>리조또</p></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="has-mega"><a href="#grid-japanese">일식</a>
-                                <div class="mega-menu">
-                                    <div class="container mega-inner">
-                                        <div class="mega-grid-col">
-                                            <div class="mega-prod-list">
-                                                <div class="m-item food-link" data-id="j1"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&q=80&w=200" alt=""><p>초밥</p></div>
-                                                <div class="m-item food-link" data-id="j2"><img src="회.webp" alt=""><p>회</p></div>
-                                                <div class="m-item food-link" data-id="j3"><img src="장어덮밥.jpg" alt=""><p>장어덮밥</p></div>
-                                                <div class="m-item food-link" data-id="j4"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=200" alt=""><p>라멘</p></div>
-                                                <div class="m-item food-link" data-id="j5"><img src="돈카츠.jpeg" alt=""><p>돈카츠</p></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="has-mega"><a href="#grid-chinese">중식</a>
-                                <div class="mega-menu">
-                                    <div class="container mega-inner">
-                                        <div class="mega-grid-col">
-                                            <div class="mega-prod-list">
-                                                <div class="m-item food-link" data-id="c1"><img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&q=80&w=200" alt=""><p>짜장면</p></div>
-                                                <div class="m-item food-link" data-id="c2"><img src="짬뽕.webp" alt=""><p>짬뽕</p></div>
-                                                <div class="m-item food-link" data-id="c3"><img src="탕수육.webp" alt=""><p>탕수육</p></div>
-                                                <div class="m-item food-link" data-id="c4"><img src="깐풍기.webp" alt=""><p>깐풍기</p></div>
-                                                <div class="m-item food-link" data-id="c5"><img src="고추잡채.jpg" alt=""><p>고추잡채</p></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="has-mega"><a href="#grid-dessert">디저트</a>
-                                <div class="mega-menu">
-                                    <div class="container mega-inner">
-                                        <div class="mega-grid-col">
-                                            <div class="mega-prod-list">
-                                                <div class="m-item food-link" data-id="d1"><img src="아이스크림.avif" alt=""><p>아이스크림</p></div>
-                                                <div class="m-item food-link" data-id="d2"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=80&w=200" alt=""><p>케이크</p></div>
-                                                <div class="m-item food-link" data-id="d3"><img src="마카롱.webp" alt=""><p>마카롱</p></div>
-                                                <div class="m-item food-link" data-id="d4"><img src="초콜렛.jpg" alt=""><p>초콜렛</p></div>
-                                                <div class="m-item food-link" data-id="d5"><img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&q=80&w=200" alt=""><p>쿠키</p></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            <li><a href="#grid-rice">밥 & 죽</a></li>
+                            <li><a href="#grid-stew">찌개 & 찜</a></li>
+                            <li><a href="#grid-meat">고기요리</a></li>
+                            <li><a href="#grid-noodle">면 & 분식</a></li>
+                            <li><a href="#grid-dessert">전통디저트</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -136,151 +67,95 @@
                 <div class="slider-wrapper" id="slider-wrapper">
                     <!-- Slide 1 -->
                     <div class="slide-item active">
-                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=2000" alt="Hero 1">
+                        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000" alt="Hero 1">
                         <div class="container hero-container">
                             <div class="hero-content">
-                                <span class="h-badge">KSH FOOD PREMIER</span>
-                                <h1 class="h-title">The Art of Dining</h1>
-                                <p class="h-desc">가장 완벽한 한 끼에 대한 고찰.<br>미니멀리즘과 미식의 정점을 만나보세요.</p>
+                                <span class="h-badge">K-FOOD PREMIER ARCHIVE</span>
+                                <h1 class="h-title">Art of K-Food</h1>
+                                <p class="h-desc">수천 년을 이어온 한국의 깊은 맛.<br>전통과 현대가 공존하는 미식의 세계로 초대합니다.</p>
                                 <div class="h-btns">
-                                    <a href="#grid-korean" class="btn-p filled">음식 도감 시작하기</a>
-                                    <a href="#" class="btn-p">KSH 스토리</a>
+                                    <a href="#grid-rice" class="btn-p filled">한식 도감 탐색하기</a>
+                                    <a href="#" class="btn-p">아카이브 스토리</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- Slide 2 -->
                     <div class="slide-item">
-                        <img src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&q=80&w=2000" alt="Hero 2">
+                        <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=2000" alt="Hero 2">
                         <div class="container hero-container">
                             <div class="hero-content">
-                                <span class="h-badge">FRESH & HEALTHY</span>
-                                <h1 class="h-title">Nature's Best</h1>
-                                <p class="h-desc">자연에서 온 신선한 재료로 만든<br>건강하고 맛있는 레시피.</p>
+                                <span class="h-badge">HEALTHY & BALANCED</span>
+                                <h1 class="h-title">Korean Balance</h1>
+                                <p class="h-desc">오방색의 조화와 영양의 균형.<br>가장 건강한 정찬을 만나보세요.</p>
                                 <div class="h-btns">
-                                    <a href="#grid-western" class="btn-p filled">컬렉션 보기</a>
-                                    <a href="#" class="btn-p">더 알아보기</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="slide-item">
-                        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&q=80&w=2000" alt="Hero 3">
-                        <div class="container hero-container">
-                            <div class="hero-content">
-                                <span class="h-badge">MASTERCHEF CHOICE</span>
-                                <h1 class="h-title">Premium Sushi</h1>
-                                <p class="h-desc">장인의 손길이 닿은 예술적인 한 입.<br>바다의 풍미를 그대로 담았습니다.</p>
-                                <div class="h-btns">
-                                    <a href="#grid-japanese" class="btn-p filled">컬렉션 보기</a>
-                                    <a href="#" class="btn-p">더 알아보기</a>
+                                    <a href="#grid-rice" class="btn-p filled">밥/죽 도감</a>
+                                    <a href="#grid-dessert" class="btn-p">디저트 도감</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slider Controls -->
                 <div class="slider-controls">
                     <div class="container controls-inner">
                         <button id="slider-play-pause" class="btn-play-pause" aria-label="Pause/Play">
                             <i class="fas fa-pause"></i>
                         </button>
-                        <div class="slider-pagination" id="slider-pagination">
-                            <!-- indicators will be generated by JS -->
-                        </div>
+                        <div class="slider-pagination" id="slider-pagination"></div>
                     </div>
                 </div>
             </section>
 
-            <!-- Banners and Grids (Remaining structure) -->
-            <!-- ... Keeping the structural integrity with mid-banners and p-grids ... -->
              <!-- Search Section -->
              <section class="search-section">
                 <div class="container">
                     <div class="search-box-wrapper">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="food-search-input" placeholder="관심 있는 음식의 이름을 검색해 보세요 (예: 초밥, 불고기...)">
+                        <input type="text" id="food-search-input" placeholder="관심 있는 한식의 이름을 검색해 보세요 (예: 비빔밥, 불고기, 숭늉...)">
                     </div>
                 </div>
              </section>
 
-             <div id="grid-korean" class="p-section">
+             <!-- Rice Section -->
+             <div id="grid-rice" class="p-section">
                 <div class="container">
-                    <h2 class="s-title">한식 (K-Food)</h2>
-                    <div class="sub-nav-container">
-                        <div class="sub-nav-tabs">
-                            <div class="tab-item active"><p>전체보기</p></div>
-                            <div class="tab-item"><p>밥/죽</p></div>
-                            <div class="tab-item"><p>찌개/찜</p></div>
-                            <div class="tab-item"><p>정통 고기요리</p></div>
-                            <div class="tab-item"><p>면류/분식</p></div>
-                        </div>
-                    </div>
-                    <div class="p-grid" id="korean-target"></div>
+                    <h2 class="s-title">밥 (Rice) & 죽 (Porridge)</h2>
+                    <div id="rice-target" class="p-grid"></div>
                 </div>
-            </div>
+             </div>
 
-            <div id="grid-western" class="p-section pd-faint">
+             <!-- Stew Section -->
+             <div id="grid-stew" class="p-section" style="background:#f9f9f9">
                 <div class="container">
-                    <h2 class="s-title">양식 (Western)</h2>
-                    <div class="sub-nav-container">
-                        <div class="sub-nav-tabs">
-                            <div class="tab-item active"><p>전체보기</p></div>
-                            <div class="tab-item"><p>스테이크</p></div>
-                            <div class="tab-item"><p>피자/파스타</p></div>
-                            <div class="tab-item"><p>샐러드/리조또</p></div>
-                        </div>
-                    </div>
-                    <div class="p-grid" id="western-target"></div>
+                    <h2 class="s-title">찌개 (Stew) & 찜 (Braised)</h2>
+                    <div id="stew-target" class="p-grid"></div>
                 </div>
-            </div>
+             </div>
 
-            <div id="grid-japanese" class="p-section">
+             <!-- Meat Section -->
+             <div id="grid-meat" class="p-section">
                 <div class="container">
-                    <h2 class="s-title">일식 (Japanese)</h2>
-                    <div class="sub-nav-container">
-                        <div class="sub-nav-tabs">
-                            <div class="tab-item active"><p>전체보기</p></div>
-                            <div class="tab-item"><p>초밥/사시미</p></div>
-                            <div class="tab-item"><p>덮밥/라멘</p></div>
-                            <div class="tab-item"><p>튀김/요리</p></div>
-                        </div>
-                    </div>
-                    <div class="p-grid" id="japanese-target"></div>
+                    <h2 class="s-title">고기요리 (Meat Dishes)</h2>
+                    <div id="meat-target" class="p-grid"></div>
                 </div>
-            </div>
+             </div>
 
-            <div id="grid-chinese" class="p-section pd-faint">
+             <!-- Noodle Section -->
+             <div id="grid-noodle" class="p-section" style="background:#f9f9f9">
                 <div class="container">
-                    <h2 class="s-title">중식 (Chinese)</h2>
-                    <div class="sub-nav-container">
-                        <div class="sub-nav-tabs">
-                            <div class="tab-item active"><p>전체보기</p></div>
-                            <div class="tab-item"><p>면류</p></div>
-                            <div class="tab-item"><p>요리류</p></div>
-                            <div class="tab-item"><p>튀김류</p></div>
-                        </div>
-                    </div>
-                    <div class="p-grid" id="chinese-target"></div>
+                    <h2 class="s-title">면 (Noodles) & 분식 (Snacks)</h2>
+                    <div id="noodle-target" class="p-grid"></div>
                 </div>
-            </div>
+             </div>
 
-            <div id="grid-dessert" class="p-section">
+             <!-- Dessert Section -->
+             <div id="grid-dessert" class="p-section">
                 <div class="container">
-                    <h2 class="s-title">디저트 (Dessert)</h2>
-                    <div class="sub-nav-container">
-                        <div class="sub-nav-tabs">
-                            <div class="tab-item active"><p>전체보기</p></div>
-                            <div class="tab-item"><p>아이스크림/초콜렛</p></div>
-                            <div class="tab-item"><p>케이크/쿠키</p></div>
-                            <div class="tab-item"><p>마카롱</p></div>
-                        </div>
-                    </div>
-                    <div class="p-grid" id="dessert-target"></div>
+                    <h2 class="s-title">전통 디저트 (Traditional Sweets)</h2>
+                    <div id="dessert-target" class="p-grid"></div>
                 </div>
-            </div>
+             </div>
         </main>
     </div>
 
