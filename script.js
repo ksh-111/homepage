@@ -122,4 +122,82 @@ document.addEventListener('DOMContentLoaded', () => {
         detailView.style.display = 'none';
         mainView.style.display = 'block';
     });
+
+    // Slider Logic
+    const initSlider = () => {
+        const slides = document.querySelectorAll('.slide-item');
+        const paginationContainer = document.getElementById('slider-pagination');
+        const playPauseBtn = document.getElementById('slider-play-pause');
+        const playPauseIcon = playPauseBtn ? playPauseBtn.querySelector('i') : null;
+        
+        if (!slides.length || !paginationContainer || !playPauseBtn) return;
+
+        let currentSlide = 0;
+        let isPlaying = true;
+        let slideInterval;
+        const intervalTime = 5000;
+
+        // Create pagination dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.classList.add('pg-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.dataset.index = index;
+            dot.addEventListener('click', () => {
+                goToSlide(index);
+                resetInterval();
+            });
+            paginationContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.pg-dot');
+
+        const updateSlider = () => {
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('active', idx === currentSlide);
+                dots[idx].classList.toggle('active', idx === currentSlide);
+            });
+        };
+
+        const nextSlide = () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        };
+
+        const goToSlide = (idx) => {
+            currentSlide = idx;
+            updateSlider();
+        };
+
+        const startInterval = () => {
+            if(isPlaying) {
+                slideInterval = setInterval(nextSlide, intervalTime);
+                if(playPauseIcon) playPauseIcon.className = 'fas fa-pause';
+            }
+        };
+
+        const stopInterval = () => {
+            clearInterval(slideInterval);
+            if(playPauseIcon) playPauseIcon.className = 'fas fa-play';
+        };
+
+        const resetInterval = () => {
+            stopInterval();
+            startInterval();
+        };
+
+        playPauseBtn.addEventListener('click', () => {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                startInterval();
+            } else {
+                stopInterval();
+            }
+        });
+
+        // Start Initial
+        startInterval();
+    };
+
+    initSlider();
 });
