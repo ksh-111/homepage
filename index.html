@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMSUNG Food | 글로벌 프리미엄 푸드 큐레이션</title>
+    <title>KSH Food | 글로벌 프리미엄 푸드 큐레이션</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
         <header class="detail-h">
             <div class="container d-inner">
                 <button id="close-detail" class="back-link"><i class="fas fa-chevron-left"></i> 뒤로가기</button>
-                <div class="d-logo">SAMSUNG <span>FOOD</span></div>
+                <div class="d-logo">KSH <span>FOOD</span></div>
             </div>
         </header>
         <div class="container d-content">
@@ -44,13 +44,13 @@
                         <li><a href="#">지속가능한 식재료</a></li>
                         <li><a href="#">셰프 스토리</a></li>
                         <li><a href="#">뉴스룸</a></li>
-                        <li><a href="#">고객지원</a></li>
+                        <li><a href="support.html">고객지원</a></li>
                     </ul>
                 </div>
             </div>
             <div class="gnb">
                 <div class="container gnb-inner">
-                    <div class="logo"><a href="#">SAMSUNG <span>FOOD</span></a></div>
+                    <div class="logo"><a href="#">KSH <span>FOOD</span></a></div>
                     <nav class="nav-menu">
                         <ul>
                             <li class="has-mega"><a href="#grid-korean">한식</a>
@@ -137,16 +137,63 @@
 
         <main>
             <!-- Hero Slider -->
-            <section class="hero-slider">
-                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=2000" alt="Hero">
-                <div class="container hero-container">
-                    <div class="hero-content">
-                        <span class="h-badge">SAMSUNG FOOD PREMIER</span>
-                        <h1 class="h-title">The Art of Dining</h1>
-                        <p class="h-desc">가장 완벽한 한 끼에 대한 고찰.<br>미니멀리즘과 미식의 정점을 만나보세요.</p>
-                        <div class="h-btns">
-                            <a href="#grid-korean" class="btn-p filled">컬렉션 보기</a>
-                            <a href="#" class="btn-p">더 알아보기</a>
+            <section class="hero-slider" id="main-hero-slider">
+                <div class="slider-wrapper" id="slider-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="slide-item active">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=2000" alt="Hero 1">
+                        <div class="container hero-container">
+                            <div class="hero-content">
+                                <span class="h-badge">KSH FOOD PREMIER</span>
+                                <h1 class="h-title">The Art of Dining</h1>
+                                <p class="h-desc">가장 완벽한 한 끼에 대한 고찰.<br>미니멀리즘과 미식의 정점을 만나보세요.</p>
+                                <div class="h-btns">
+                                    <a href="#grid-korean" class="btn-p filled">컬렉션 보기</a>
+                                    <a href="#" class="btn-p">더 알아보기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide-item">
+                        <img src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?auto=format&fit=crop&q=80&w=2000" alt="Hero 2">
+                        <div class="container hero-container">
+                            <div class="hero-content">
+                                <span class="h-badge">FRESH & HEALTHY</span>
+                                <h1 class="h-title">Nature's Best</h1>
+                                <p class="h-desc">자연에서 온 신선한 재료로 만든<br>건강하고 맛있는 레시피.</p>
+                                <div class="h-btns">
+                                    <a href="#grid-western" class="btn-p filled">컬렉션 보기</a>
+                                    <a href="#" class="btn-p">더 알아보기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="slide-item">
+                        <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&q=80&w=2000" alt="Hero 3">
+                        <div class="container hero-container">
+                            <div class="hero-content">
+                                <span class="h-badge">MASTERCHEF CHOICE</span>
+                                <h1 class="h-title">Premium Sushi</h1>
+                                <p class="h-desc">장인의 손길이 닿은 예술적인 한 입.<br>바다의 풍미를 그대로 담았습니다.</p>
+                                <div class="h-btns">
+                                    <a href="#grid-japanese" class="btn-p filled">컬렉션 보기</a>
+                                    <a href="#" class="btn-p">더 알아보기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Controls -->
+                <div class="slider-controls">
+                    <div class="container controls-inner">
+                        <button id="slider-play-pause" class="btn-play-pause" aria-label="Pause/Play">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <div class="slider-pagination" id="slider-pagination">
+                            <!-- indicators will be generated by JS -->
                         </div>
                     </div>
                 </div>
