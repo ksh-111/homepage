@@ -21,8 +21,8 @@
         </header>
         <div class="container d-content">
             <div class="d-grid">
-                <div class="d-img-container">
-                    <img id="d-img-target" src="" alt="Food Detail">
+                <div class="d-img-container" style="background:#f0f0f0; display:flex; align-items:center; justify-content:center; height:400px; border-radius:24px;">
+                    <i class="fas fa-utensils" style="font-size:10rem; color:#ccc;"></i>
                 </div>
                 <div class="d-info-container">
                     <span id="d-cat-target" class="d-tag">CATEGORY</span>
@@ -37,22 +37,24 @@
         </div>
     </div>
 
-    <!-- Main View -->
     <div id="main-view">
         <header class="main-header">
-            <!-- 기존 top-bar 삭제 -->
             <div class="gnb">
                 <div class="container gnb-inner">
                     <div class="logo"><a href="index.html">K-FOOD <span>ARCHIVE</span></a></div>
                     <nav class="nav-menu">
                         <ul>
-                            <li><a href="#grid-rice">밥 & 죽</a></li>
-                            <li><a href="#grid-stew">찌개 & 찜</a></li>
-                            <li><a href="#grid-meat">고기요리</a></li>
-                            <li><a href="#grid-noodle">면 & 분식</a></li>
+                            <li><a href="#grid-rice">밥/죽</a></li>
+                            <li><a href="#grid-soup">국/탕</a></li>
+                            <li><a href="#grid-stew">찌개/전골</a></li>
+                            <li><a href="#grid-steam">찜/조림</a></li>
+                            <li><a href="#grid-meat">고기구이</a></li>
+                            <li><a href="#grid-pancake">전/부침</a></li>
+                            <li><a href="#grid-noodle">면/만두</a></li>
+                            <li><a href="#grid-snack">분식/간식</a></li>
+                            <li><a href="#grid-kimchi">김치/반찬</a></li>
                             <li><a href="#grid-dessert">전통디저트</a></li>
-                            <!-- 고객지원 메뉴 위치 이동 -->
-                            <li class="support-item"><a href="support.html" style="color:var(--ksh-blue); font-weight:700;">고객지원</a></li>
+                            <li class="support-item"><a href="support.html" style="color:var(--ksh-blue); font-weight:800;">고객지원</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -60,100 +62,26 @@
         </header>
 
         <main>
-            <!-- Hero Slider -->
-            <section class="hero-slider" id="main-hero-slider">
-                <div class="slider-wrapper" id="slider-wrapper">
-                    <!-- Slide 1 -->
-                    <div class="slide-item active">
-                        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=2000" alt="Hero 1">
-                        <div class="container hero-container">
-                            <div class="hero-content">
-                                <span class="h-badge">K-FOOD PREMIER ARCHIVE</span>
-                                <h1 class="h-title">Art of K-Food</h1>
-                                <p class="h-desc">수천 년을 이어온 한국의 깊은 맛.<br>전통과 현대가 공존하는 미식의 세계로 초대합니다.</p>
-                                <div class="h-btns">
-                                    <a href="#grid-rice" class="btn-p filled">한식 도감 탐색하기</a>
-                                    <a href="#" class="btn-p">아카이브 스토리</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="slide-item">
-                        <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&q=80&w=2000" alt="Hero 2">
-                        <div class="container hero-container">
-                            <div class="hero-content">
-                                <span class="h-badge">HEALTHY & BALANCED</span>
-                                <h1 class="h-title">Korean Balance</h1>
-                                <p class="h-desc">오방색의 조화와 영양의 균형.<br>가장 건강한 정찬을 만나보세요.</p>
-                                <div class="h-btns">
-                                    <a href="#grid-rice" class="btn-p filled">밥/죽 도감</a>
-                                    <a href="#grid-dessert" class="btn-p">디저트 도감</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slider-controls">
-                    <div class="container controls-inner">
-                        <button id="slider-play-pause" class="btn-play-pause" aria-label="Pause/Play">
-                            <i class="fas fa-pause"></i>
-                        </button>
-                        <div class="slider-pagination" id="slider-pagination"></div>
-                    </div>
-                </div>
-            </section>
-
              <!-- Search Section -->
              <section class="search-section">
                 <div class="container">
                     <div class="search-box-wrapper">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="food-search-input" placeholder="관심 있는 한식의 이름을 검색해 보세요 (예: 비빔밥, 불고기, 숭늉...)">
+                        <input type="text" id="food-search-input" placeholder="대한민국 140가지 한식을 검색해 보세요 (예: 미역국, 삼겹살, 호떡...)">
                     </div>
                 </div>
              </section>
 
-             <!-- Rice Section -->
-             <div id="grid-rice" class="p-section">
-                <div class="container">
-                    <h2 class="s-title">밥 (Rice) & 죽 (Porridge)</h2>
-                    <div id="rice-target" class="p-grid"></div>
-                </div>
-             </div>
-
-             <!-- Stew Section -->
-             <div id="grid-stew" class="p-section" style="background:#f9f9f9">
-                <div class="container">
-                    <h2 class="s-title">찌개 (Stew) & 찜 (Braised)</h2>
-                    <div id="stew-target" class="p-grid"></div>
-                </div>
-             </div>
-
-             <!-- Meat Section -->
-             <div id="grid-meat" class="p-section">
-                <div class="container">
-                    <h2 class="s-title">고기요리 (Meat Dishes)</h2>
-                    <div id="meat-target" class="p-grid"></div>
-                </div>
-             </div>
-
-             <!-- Noodle Section -->
-             <div id="grid-noodle" class="p-section" style="background:#f9f9f9">
-                <div class="container">
-                    <h2 class="s-title">면 (Noodles) & 분식 (Snacks)</h2>
-                    <div id="noodle-target" class="p-grid"></div>
-                </div>
-             </div>
-
-             <!-- Dessert Section -->
-             <div id="grid-dessert" class="p-section">
-                <div class="container">
-                    <h2 class="s-title">전통 디저트 (Traditional Sweets)</h2>
-                    <div id="dessert-target" class="p-grid"></div>
-                </div>
-             </div>
+             <div id="grid-rice" class="p-section"><div class="container"><h2 class="s-title">밥 & 죽 (Rice/Porridge)</h2><div id="rice-target" class="p-grid"></div></div></div>
+             <div id="grid-soup" class="p-section" style="background:#f9f9f9"><div class="container"><h2 class="s-title">국 & 탕 (Soup)</h2><div id="soup-target" class="p-grid"></div></div></div>
+             <div id="grid-stew" class="p-section"><div class="container"><h2 class="s-title">찌개 & 전골 (Stew)</h2><div id="stew-target" class="p-grid"></div></div></div>
+             <div id="grid-steam" class="p-section" style="background:#f9f9f9"><div class="container"><h2 class="s-title">찜 & 조림 (Braised/Simmered)</h2><div id="steam-target" class="p-grid"></div></div></div>
+             <div id="grid-meat" class="p-section"><div class="container"><h2 class="s-title">고기구이 (Grilled Meat)</h2><div id="meat-target" class="p-grid"></div></div></div>
+             <div id="grid-pancake" class="p-section" style="background:#f9f9f9"><div class="container"><h2 class="s-title">전 & 부침 (Pancake)</h2><div id="pancake-target" class="p-grid"></div></div></div>
+             <div id="grid-noodle" class="p-section"><div class="container"><h2 class="s-title">면 & 만두 (Noodle/Dumpling)</h2><div id="noodle-target" class="p-grid"></div></div></div>
+             <div id="grid-snack" class="p-section" style="background:#f9f9f9"><div class="container"><h2 class="s-title">분식 & 간식 (Snack)</h2><div id="snack-target" class="p-grid"></div></div></div>
+             <div id="grid-kimchi" class="p-section"><div class="container"><h2 class="s-title">김치 & 반찬 (Kimchi/Side Dish)</h2><div id="kimchi-target" class="p-grid"></div></div></div>
+             <div id="grid-dessert" class="p-section" style="background:#f9f9f9"><div class="container"><h2 class="s-title">전통디저트 (Dessert)</h2><div id="dessert-target" class="p-grid"></div></div></div>
         </main>
     </div>
 
