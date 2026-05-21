@@ -12,25 +12,27 @@
 </head>
 <body>
     <!-- Detail View Overlay -->
-    <div id="food-detail-view" class="detail-page" style="display:none;">
-        <header class="detail-h">
-            <div class="container d-inner">
-                <button id="close-detail" class="back-link"><i class="fas fa-chevron-left"></i> 뒤로가기</button>
-                <div class="d-logo">K-FOOD <span>ARCHIVE</span></div>
-            </div>
-        </header>
-        <div class="container d-content">
-            <div class="d-grid">
-                <div class="d-img-container" style="background:#f0f0f0; display:flex; align-items:center; justify-content:center; height:400px; border-radius:24px;">
-                    <i class="fas fa-utensils" style="font-size:10rem; color:#ccc;"></i>
+    <div id="food-detail-view" class="detail-page">
+        <div class="modal-container">
+            <header class="detail-h">
+                <div class="container d-inner">
+                    <button id="close-detail" class="back-link"><i class="fas fa-chevron-left"></i> <span id="back-btn-label">뒤로가기</span></button>
+                    <div class="d-logo">K-FOOD <span>ARCHIVE</span></div>
                 </div>
-                <div class="d-info-container">
-                    <span id="d-cat-target" class="d-tag">CATEGORY</span>
-                    <h1 id="d-name-target">Food Name</h1>
-                    <p id="d-desc-target"></p>
-                    <div class="d-footer">
-                        <span id="d-price-target" class="d-price" style="font-size: 1.2rem; color: #666; font-weight: 500;">K-FOOD 프리미엄 선정</span>
-                        <button id="knowledge-share-btn" class="d-btn-buy" style="background:var(--ksh-blue)"> <i class="fas fa-copy"></i> 지식 가져가기</button>
+            </header>
+            <div class="container d-content">
+                <div class="d-grid">
+                    <div class="d-img-container" style="background:#f0f0f0; display:flex; align-items:center; justify-content:center; height:400px; border-radius:24px;">
+                        <i class="fas fa-utensils" style="font-size:10rem; color:#ccc;"></i>
+                    </div>
+                    <div class="d-info-container">
+                        <span id="d-cat-target" class="d-tag">CATEGORY</span>
+                        <h1 id="d-name-target">Food Name</h1>
+                        <p id="d-desc-target"></p>
+                        <div class="d-footer">
+                            <span id="d-premium-target" class="d-price" style="font-size: 1.2rem; color: #666; font-weight: 500;">K-FOOD 프리미엄 선정</span>
+                            <button id="knowledge-share-btn" class="d-btn-buy" style="background:var(--ksh-blue)"> <i class="fas fa-copy"></i> <span id="share-btn-label">지식 가져가기</span></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,7 +44,12 @@
             <div class="gnb">
                 <div class="container gnb-inner">
                     <div class="logo"><a href="index.html">K-FOOD <span>ARCHIVE</span></a></div>
-                    <nav class="nav-menu">
+                <div class="lang-switcher">
+                    <button class="lang-btn active" data-lang="ko">KR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ja">JP</button>
+                </div>
+                <nav class="nav-menu">
                         <ul>
                             <li><a href="#grid-rice">밥/죽</a></li>
                             <li><a href="#grid-soup">국/탕</a></li>
@@ -66,9 +73,9 @@
         <section class="hero-container">
             <img src="main_banner_hd.png" alt="K-Food Banner" class="hero-image">
             <div class="hero-content">
-                <span class="hero-badge">K-FOOD ARCHIVE</span>
-                <h1>대한민국 맛의 기록,<br>한식 아카이브</h1>
-                <p>80가지의 정통 한국 음식과 그 속에 담긴 깊은 이야기를 기록합니다.<br>우리의 맛, 그 이상의 가치를 경험해 보세요.</p>
+                <span class="hero-badge" id="hero-badge">K-FOOD ARCHIVE</span>
+                <h1 id="hero-title">대한민국 맛의 기록,<br>한식 아카이브</h1>
+                <p id="hero-desc">80가지의 정통 한국 음식과 그 속에 담긴 깊은 이야기를 기록합니다.<br>우리의 맛, 그 이상의 가치를 경험해 보세요.</p>
             </div>
         </section>
 
@@ -76,7 +83,7 @@
                 <div class="container">
                     <div class="search-box-wrapper">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="food-search-input" placeholder="대한민국 140가지 한식을 검색해 보세요 (예: 미역국, 삼겹살, 호떡...)">
+                        <input type="text" id="food-search-input" placeholder="대한민국 80가지 한식을 검색해 보세요 (예: 미역국, 삼겹살, 호떡...)">
                     </div>
                 </div>
              </section>

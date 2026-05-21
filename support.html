@@ -51,9 +51,14 @@
         <div class="gnb">
             <div class="container gnb-inner">
                 <div class="logo"><a href="index.html">K-FOOD <span>ARCHIVE</span></a></div>
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="ko">KR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="ja">JP</button>
+                </div>
                 <nav class="nav-menu">
                     <ul>
-                        <li><a href="index.html">홈으로 가기</a></li>
+                        <li><a href="index.html" id="nav-home">홈으로 가기</a></li>
                     </ul>
                 </nav>
             </div>
@@ -63,10 +68,10 @@
     <div class="support-wrapper">
         <div id="board-list-view">
             <div class="board-header">
-                <h1 class="board-title">고객지원 게시판</h1>
-                <button class="btn-write" id="show-write-form"><i class="fas fa-pen"></i> 글쓰기</button>
+                <h1 class="board-title" id="board-title">고객지원 게시판</h1>
+                <button class="btn-write" id="show-write-form"><i class="fas fa-pen"></i> <span id="write-btn-label">글쓰기</span></button>
             </div>
-            <p style="margin-top:-20px; margin-bottom:30px; color:#666; font-weight:500;">
+            <p id="board-desc" style="margin-top:-20px; margin-bottom:30px; color:#666; font-weight:500;">
                 아카이브에 추가하고 싶은 음식이 있거나 서비스에 대해 궁금한 점이 있으시면 자유롭게 글을 남겨주세요.
             </p>
             <div class="post-list" id="post-list-container">
@@ -79,27 +84,27 @@
 
         <div id="board-write-view" class="form-container">
             <div class="form-header">
-                <button class="btn-back-list" id="back-to-list"><i class="fas fa-arrow-left"></i> 목록으로</button>
-                <h2 style="margin:0">게시글 작성</h2>
+                <button class="btn-back-list" id="back-to-list"><i class="fas fa-arrow-left"></i> <span id="back-list-label">목록으로</span></button>
+                <h2 id="write-title" style="margin:0">게시글 작성</h2>
             </div>
             <form id="support-form">
                 <div class="form-group">
-                    <label>제목</label>
+                    <label id="label-title">제목</label>
                     <input type="text" id="post-title" placeholder="제목을 입력하세요" required>
                 </div>
                 <div class="form-group">
-                    <label>작성자</label>
+                    <label id="label-author">작성자</label>
                     <input type="text" id="post-author" placeholder="이름을 입력하세요" required>
                 </div>
-                <label class="checkbox-group">
-                    <input type="checkbox" id="post-is-private"> 🔒 비밀글로 설정하기
+                <label class="checkbox-group" id="label-private">
+                    <input type="checkbox" id="post-is-private"> <span id="private-text">🔒 비밀글로 설정하기</span>
                 </label>
                 <div class="form-group pw-group" id="pw-group">
-                    <label>비밀번호 (4자리 영문/숫자)</label>
+                    <label id="label-pw">비밀번호 (4자리 영문/숫자)</label>
                     <input type="password" id="post-password" placeholder="비밀번호 설정" maxlength="4">
                 </div>
                 <div class="form-group">
-                    <label>내용</label>
+                    <label id="label-content">내용</label>
                     <textarea id="post-content" style="min-height:200px" placeholder="문의 내용을 상세히 적어주세요" required></textarea>
                 </div>
                 <button type="submit" class="submit-btn" id="submit-btn">작성 완료</button>
@@ -107,10 +112,10 @@
         </div>
 
         <div id="board-detail-view" class="post-detail-view">
-            <button class="btn-back-list" id="back-to-list-from-detail" style="margin-bottom:20px; padding:0"><i class="fas fa-arrow-left"></i> 목록으로 돌아가기</button>
+            <button class="btn-back-list" id="back-to-list-from-detail" style="margin-bottom:20px; padding:0"><i class="fas fa-arrow-left"></i> <span id="back-list-return">목록으로 돌아가기</span></button>
             <h2 id="view-title"></h2>
             <div style="color:#888; font-size:0.9rem; margin-top:10px;">
-                작성자: <span id="view-author"></span> | <span id="view-date"></span>
+                <span id="label-view-author">작성자:</span> <span id="view-author"></span> | <span id="view-date"></span>
             </div>
             <div class="p-content" id="view-content"></div>
         </div>
@@ -119,6 +124,77 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getFirestore, collection, addDoc, query, orderBy, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        const i18n = {
+            ko: {
+                navHome: '홈으로 가기', supportTitle: '고객지원 게시판', supportDesc: '아카이브에 추가하고 싶은 음식이 있거나 서비스에 대해 궁금한 점이 있으시면 자유롭게 글을 남겨주세요.',
+                writeBtn: '글쓰기', backToList: '목록으로', writeTitle: '게시글 작성', labelTitle: '제목', labelAuthor: '작성자',
+                privateText: '🔒 비밀글로 설정하기', labelPw: '비밀번호 (4자리 영문/숫자)', labelContent: '내용', submitBtn: '작성 완료',
+                phTitle: '제목을 입력하세요', phAuthor: '이름을 입력하세요', phPw: '비밀번호 설정', phContent: '문의 내용을 상세히 적어주세요',
+                backReturn: '목록으로 돌아가기', labelViewAuthor: '작성자:', loading: '파이어베이스 연결 확인 중...', empty: '첫 게시글을 작성해 보세요!',
+                alertSuccess: '게시글이 성공적으로 등록되었습니다.', alertNoPw: '비밀번호가 일치하지 않습니다.', promptPw: '비밀번호 4자리를 입력하세요:',
+                lockText: '비밀글입니다.'
+            },
+            en: {
+                navHome: 'Go Home', supportTitle: 'Customer Support', supportDesc: 'If you have any food you want to add to the archive or questions, please leave a message.',
+                writeBtn: 'Write', backToList: 'List', writeTitle: 'Create Post', labelTitle: 'Title', labelAuthor: 'Author',
+                privateText: '🔒 Set as private', labelPw: 'Password (4 digits)', labelContent: 'Content', submitBtn: 'Submit',
+                phTitle: 'Enter title', phAuthor: 'Enter name', phPw: 'Set password', phContent: 'Enter details here',
+                backReturn: 'Back to List', labelViewAuthor: 'Author:', loading: 'Checking connection...', empty: 'Be the first to post!',
+                alertSuccess: 'Post registered successfully.', alertNoPw: 'Password does not match.', promptPw: 'Enter 4 digit password:',
+                lockText: 'Private post.'
+            },
+            ja: {
+                navHome: 'トップへ戻る', supportTitle: 'カスタマーサポート', supportDesc: 'アーカイブに追加したい料理やサービスに関するお問い合わせは、こちらに自由にご記入ください。',
+                writeBtn: '新規作成', backToList: '戻る', writeTitle: '投稿を作成', labelTitle: 'タイトル', labelAuthor: '作成者',
+                privateText: '🔒 非公開に設定', labelPw: 'パスワード（4桁）', labelContent: '内容', submitBtn: '投稿する',
+                phTitle: 'タイトルを入力', phAuthor: '名前を入力', phPw: 'パスワード設定', phContent: 'お問い合わせ内容を入力してください',
+                backReturn: '一覧へ戻る', labelViewAuthor: '作成者:', loading: '接続を確認中...', empty: '最初の投稿をしてみましょう！',
+                alertSuccess: '投稿が完了しました。', alertNoPw: 'パスワードが一致しません。', promptPw: '4桁のパスワードを入力してください：',
+                lockText: '非公開の投稿です。'
+            }
+        };
+
+        let currentLang = localStorage.getItem('kfood_lang') || 'ko';
+
+        const updateUI = () => {
+            const t = i18n[currentLang];
+            document.getElementById('nav-home').innerText = t.navHome;
+            document.getElementById('board-title').innerText = t.supportTitle;
+            document.getElementById('board-desc').innerText = t.supportDesc;
+            document.getElementById('write-btn-label').innerText = t.writeBtn;
+            document.getElementById('back-list-label').innerText = t.backToList;
+            document.getElementById('write-title').innerText = t.writeTitle;
+            document.getElementById('label-title').innerText = t.labelTitle;
+            document.getElementById('label-author').innerText = t.labelAuthor;
+            document.getElementById('private-text').innerText = t.privateText;
+            document.getElementById('label-pw').innerText = t.labelPw;
+            document.getElementById('label-content').innerText = t.labelContent;
+            document.getElementById('submit-btn').innerText = t.submitBtn;
+            document.getElementById('back-list-return').innerText = t.backReturn;
+            document.getElementById('label-view-author').innerText = t.labelViewAuthor;
+
+            document.getElementById('post-title').placeholder = t.phTitle;
+            document.getElementById('post-author').placeholder = t.phAuthor;
+            document.getElementById('post-password').placeholder = t.phPw;
+            document.getElementById('post-content').placeholder = t.phContent;
+
+            // Update language dots
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === currentLang);
+            });
+        };
+
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.onclick = () => {
+                currentLang = btn.dataset.lang;
+                localStorage.setItem('kfood_lang', currentLang);
+                updateUI();
+                location.reload(); // Reload to refresh firebase snapshot with new language texts if needed
+            };
+        });
+
+        updateUI();
 
         // 파이어베이스 설정 (본인의 정보를 반드시 입력하세요!)
         const firebaseConfig = {
@@ -157,17 +233,18 @@
         // 목록 로드
         const q = query(collection(db, "support_posts"), orderBy("timestamp", "desc"));
         onSnapshot(q, (snapshot) => {
+            const t = i18n[currentLang];
             if (snapshot.empty) {
-                listContainer.innerHTML = '<div style="padding:100px 0; text-align:center; color:#888;">첫 게시글을 작성해 보세요!</div>';
+                listContainer.innerHTML = `<div style="padding:100px 0; text-align:center; color:#888;">${t.empty}</div>`;
                 return;
             }
             listContainer.innerHTML = snapshot.docs.map(doc => {
                 const d = doc.data();
-                const date = d.timestamp ? new Date(d.timestamp.seconds * 1000).toLocaleDateString() : '방금 전';
+                const date = d.timestamp ? new Date(d.timestamp.seconds * 1000).toLocaleDateString() : '...';
                 return `
                     <div class="post-item" data-id="${doc.id}">
                         <div class="post-main-info">
-                            <div class="post-title">${d.isPrivate ? '<i class="fas fa-lock private-icon"></i> 비밀글입니다.' : d.title}</div>
+                            <div class="post-title">${d.isPrivate ? `<i class="fas fa-lock private-icon"></i> ${t.lockText}` : d.title}</div>
                             <div class="post-author">${d.author}</div>
                         </div>
                         <div class="post-date">${date}</div>
@@ -177,11 +254,12 @@
 
             document.querySelectorAll('.post-item').forEach(item => {
                 item.onclick = () => {
+                    const t = i18n[currentLang];
                     const id = item.dataset.id;
                     const docData = snapshot.docs.find(d => d.id === id).data();
                     if (docData.isPrivate) {
-                        const pw = prompt("비밀번호 4자리를 입력하세요:");
-                        if (pw !== docData.password) return alert("비밀번호가 일치하지 않습니다.");
+                        const pw = prompt(t.promptPw);
+                        if (pw !== docData.password) return alert(t.alertNoPw);
                     }
                     document.getElementById('view-title').innerText = docData.title;
                     document.getElementById('view-author').innerText = docData.author;
@@ -191,22 +269,18 @@
                 };
             });
         }, (err) => {
-            listContainer.innerHTML = `<div style="padding:50px; text-align:center; color:red;">에러 발생: ${err.message}<br>파이어베이스 설정을 확인하세요.</div>`;
+            listContainer.innerHTML = `<div style="padding:50px; text-align:center; color:red;">Error: ${err.message}</div>`;
         });
 
         // 글쓰기 기능 (에러 핸들링 강화)
         supportForm.onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
-
-            if (firebaseConfig.apiKey === "YOUR_API_KEY") {
-                alert("파이어베이스 API Key가 설정되지 않았습니다. support.html 파일 내 설정을 본인의 것으로 변경해 주세요.");
-                return;
-            }
+            const t = i18n[currentLang];
 
             try {
                 btn.disabled = true;
-                btn.innerText = "서버 전송 중...";
+                btn.innerText = "...";
                 
                 await addDoc(collection(db, "support_posts"), {
                     title: document.getElementById('post-title').value,
@@ -217,16 +291,16 @@
                     timestamp: serverTimestamp()
                 });
 
-                alert("게시글이 성공적으로 등록되었습니다.");
+                alert(t.alertSuccess);
                 supportForm.reset();
                 pwGroup.style.display = 'none';
                 switchView('list');
             } catch (err) {
                 console.error(err);
-                alert("전송 실패: " + err.message + "\n\n도메인 승인(Authorized Domains) 및 Firestore 규칙을 확인해 주세요.");
+                alert("Error: " + err.message);
             } finally {
                 btn.disabled = false;
-                btn.innerText = "작성 완료";
+                btn.innerText = t.submitBtn;
             }
         };
     </script>

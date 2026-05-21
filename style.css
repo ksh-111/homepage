@@ -93,8 +93,38 @@ body { font-family: 'Inter', 'Noto Sans KR', sans-serif; color: #000; overflow-x
     position: absolute; top: 100%; left: 0; width: 100%; background: #fff; border-top: 1px solid #eee;
     box-shadow: 0 30px 60px rgba(0,0,0,0.1); padding: 50px 0; display: none; z-index: 1000;
 }
-.has-mega:hover .mega-menu { display: block; }
-.mega-inner { display: flex; gap: 60px; }
+.has-mega:hover .logo a span { color: var(--ksh-blue); }
+
+.lang-switcher {
+    display: flex;
+    gap: 10px;
+    margin-left: 30px;
+}
+
+.lang-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #888;
+}
+
+.lang-btn:hover {
+    background: #f5f5f5;
+    border-color: #ccc;
+}
+
+.lang-btn.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.nav-menu ul { display: flex; gap: 30px; }
 .mega-grid-col { flex: 3; }
 .mega-prod-list { display: grid; grid-template-columns: repeat(6, 1fr); gap: 30px; text-align: center; }
 .m-item { cursor: pointer; transition: 0.3s; }
@@ -237,19 +267,65 @@ body { font-family: 'Inter', 'Noto Sans KR', sans-serif; color: #000; overflow-x
 .p-price { font-size: 1rem; color: var(--samsung-blue); font-weight: 700; margin-bottom: 20px; }
 .p-btn-view { border: 1px solid #000; padding: 8px 30px; border-radius: 20px; font-weight: 700; font-size: 13px; }
 
-/* Detail View Simulation */
-.detail-page { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 3000; overflow-y: auto; }
-.detail-h { height: 70px; border-bottom: 1px solid #eee; display: flex; align-items: center; position: sticky; top: 0; background: #fff; }
+/* Modal-specific Detail View */
+.detail-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 3000;
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.detail-page.active {
+    display: flex;
+}
+
+.modal-container {
+    background: #fff;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 90vh;
+    border-radius: 30px;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.detail-h {
+    height: 70px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 10;
+}
+
 .d-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-.back-link { background: none; border: none; font-size: 18px; font-weight: 700; cursor: pointer; color: var(--samsung-blue); }
-.d-content { padding: 60px 40px; }
-.d-grid { display: flex; gap: 60px; align-items: flex-start; max-width: 1200px; margin: 0 auto; }
-.d-img-container { flex: 1.2; border-radius: 24px; overflow: hidden; background: #f7f7f7; }
-.d-img-container img { width: 100%; height: auto; max-height: 70vh; object-fit: cover; }
-.d-info-container { flex: 1; padding: 20px 0; }
-.d-info-container h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; }
-.d-price { font-size: 2rem; font-weight: 900; color: var(--samsung-blue); margin-bottom: 30px; display: block; }
-.d-btn-buy { background: #000; color: #fff; padding: 18px 0; width: 100%; border-radius: 35px; border: none; font-size: 16px; font-weight: 700; cursor: pointer; }
+.back-link { background: none; border: none; font-size: 18px; font-weight: 700; cursor: pointer; color: var(--ksh-blue); }
+.d-content { padding: 40px; }
+.d-grid { display: flex; gap: 40px; align-items: flex-start; }
+.d-img-container { flex: 1.2; border-radius: 20px; overflow: hidden; }
+.d-img-container img { width: 100%; height: auto; max-height: 50vh; object-fit: cover; }
+.d-info-container { flex: 1; }
+.d-info-container h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+.d-price { font-size: 1.2rem; font-weight: 600; color: #888; margin-bottom: 25px; display: block; }
+.d-btn-buy { background: #000; color: #fff; padding: 16px 0; width: 100%; border-radius: 30px; border: none; font-size: 16px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.d-btn-buy:hover { transform: scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
 /* Responsive */
 @media (max-width: 1024px) {
