@@ -8,9 +8,9 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', 'Noto Sans KR', sans-serif; color: #000; overflow-x: hidden; }
+body { font-family: 'Inter', 'Noto Sans KR', sans-serif; color: #000; overflow-x: hidden; overflow-y: scroll; }
 
-.container { max-width: 1440px; margin: 0 auto; padding: 0 40px; }
+.container { max-width: 1440px; margin: 0 auto; padding: 0 40px; min-height: 100vh; }
 
 /* Header & GNB Optimization */
 .main-header {
