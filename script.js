@@ -212,10 +212,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let items = foodDB.filter(f => f.cat === cat);
         if(filterText) {
+            const lowerFilter = filterText.toLowerCase();
             items = items.filter(f => 
-                f[`name_${currentLang}`].includes(filterText) || 
-                f[`desc_${currentLang}`].includes(filterText) || 
-                f[`info_${currentLang}`].includes(filterText)
+                f.name_ko.includes(filterText) || 
+                f.name_en.toLowerCase().includes(lowerFilter) || 
+                f.name_ja.includes(filterText)
             );
         }
 
