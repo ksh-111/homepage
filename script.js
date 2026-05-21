@@ -2,8 +2,8 @@
 const i18n = {
     ko: {
         heroTitle: '대한민국 맛의 기록,<br>한식 아카이브',
-        heroDesc: '여러가지의 정통 한국 음식과 그 속에 담긴 깊은 이야기를 기록합니다.<br>우리의 맛, 그 이상의 가치를 경험해 보세요.',
-        searchPlaceholder: '대한민국의 여러가지 한식을 검색해 보세요 (예: 미역국, 삼겹살, 호떡...)',
+        heroDesc: '여러 가지 정통 한국 음식과 그 속에 담긴 깊은 이야기를 기록합니다.<br>우리의 맛, 그 이상의 가치를 경험해 보세요.',
+        searchPlaceholder: '대한민국 여러 가지 한식을 검색해 보세요 (예: 미역국, 삼겹살, 호떡...)',
         detailHeader: '[한식 전문 지식 아카이브]',
         shareAlert: '음식 지식이 클립보드에 복사되었습니다. 이메일 창으로 연결합니다.',
         shareSubject: '[한식 지식 공유] ',
@@ -28,8 +28,8 @@ const i18n = {
     },
     en: {
         heroTitle: 'Chronicles of Korean Taste,<br>K-FOOD ARCHIVE',
-        heroDesc: 'Recording 80 types of authentic Korean food and their deep stories.<br>Experience the value beyond the taste.',
-        searchPlaceholder: 'Search 80 types of Korean food (e.g., Miyeok-guk, Samgyeopsal...)',
+        heroDesc: 'Recording various types of authentic Korean food and their deep stories.<br>Experience the value beyond the taste.',
+        searchPlaceholder: 'Search various types of Korean food (e.g., Miyeok-guk, Samgyeopsal...)',
         detailHeader: '[K-FOOD Knowledge Archive]',
         shareAlert: 'Food knowledge has been copied to clipboard. Opening email window.',
         shareSubject: '[K-FOOD Knowledge Share] ',
@@ -54,8 +54,8 @@ const i18n = {
     },
     ja: {
         heroTitle: '大韓民国の味の記録、<br>韓国料理アーカイブ',
-        heroDesc: '80種類の伝統的な韓国料理と、そこに込められた深い物語を記録します。<br>味、その以上の価値を体験してください。',
-        searchPlaceholder: '80種類の韓国料理を検索（例：わかめスープ、サムギョプサル...）',
+        heroDesc: '様々な伝統的な韓国料理と、そこに込められた深い物語を記録します。<br>味、その以上の価値を体験してください。',
+        searchPlaceholder: '様々な韓国料理を検索（例：わかめスープ、サムギョプサル...）',
         detailHeader: '[韓国料理専門知識アーカイブ]',
         shareAlert: '料理の知識がクリップボードにコピーされました。メールウィンドウを開きます。',
         shareSubject: '[韓国料理の知識共有] ',
