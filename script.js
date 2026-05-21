@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         grid.innerHTML = items.map(item => `
             <div class="p-card" data-id="${item.id}">
                 <div class="p-img" style="background:#f5f5f5; height:180px; border-radius:18px; margin-bottom:15px; overflow:hidden;">
-                    <img src="food/${item.img}" alt="${item.name}" style="width:100%; height:100%; object-fit:cover;">
+                    <img src="${item.img}" alt="${item.name}" style="width:100%; height:100%; object-fit:cover;">
                 </div>
                 <div class="p-info">
                     <h3 class="p-name">${item.name}</h3>
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update detail view content
         const imgContainer = document.querySelector('.d-img-container');
-        imgContainer.innerHTML = `<img src="food/${item.img}" alt="${item.name}" style="width:100%; height:100%; object-fit:cover; border-radius:24px;">`;
+        imgContainer.innerHTML = `<img src="${item.img}" alt="${item.name}" style="width:100%; height:100%; object-fit:cover; border-radius:24px;">`;
         
         document.getElementById('d-cat-target').innerText = item.cat;
         document.getElementById('d-name-target').innerText = item.name;
