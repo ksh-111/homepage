@@ -144,8 +144,66 @@ body { font-family: 'Inter', 'Noto Sans KR', sans-serif; color: #000; overflow-x
 .pg-dot:hover { background: rgba(255,255,255,0.6); }
 .pg-dot.active { background: #fff; width: 60px; }
 
-.mid-banner { height: 75vh; position: relative; margin: 100px 0; overflow: hidden; }
-.mid-banner img { width: 100%; height: 100%; object-fit: cover; }
+/* Hero Section */
+.hero-container {
+    width: 100%;
+    height: 450px;
+    position: relative;
+    margin-top: 100px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: #000;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    filter: brightness(0.8);
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    transform: translateY(-50%);
+    color: #fff;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.hero-badge {
+    background: var(--ksh-blue, #2189ff);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+/* Mid Banner / Hero Slider - Cleanup if unused */
+.main-visual { display: none; }
+.hero-slider { display: none; }
+.mid-banner { display: none; }
 .mid-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #000; background: rgba(255,255,255,0.1); }
 .mid-content h2 { font-size: 3.5rem; font-weight: 800; margin-bottom: 15px; }
 .mid-content p { font-size: 1.2rem; margin-bottom: 30px; }
