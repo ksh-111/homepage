@@ -52,9 +52,11 @@
             <div class="container gnb-inner">
                 <div class="logo"><a href="index.html">K-FOOD <span>ARCHIVE</span></a></div>
                 <div class="lang-switcher">
-                    <button class="lang-btn" data-lang="ko">KR</button>
-                    <button class="lang-btn" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="ja">JP</button>
+                    <select id="lang-select" class="lang-select">
+                        <option value="ko">KR</option>
+                        <option value="en">EN</option>
+                        <option value="ja">JP</option>
+                    </select>
                 </div>
                 <nav class="nav-menu">
                     <ul>
@@ -185,14 +187,16 @@
             });
         };
 
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.onclick = () => {
-                currentLang = btn.dataset.lang;
+        const langSelect = document.getElementById('lang-select');
+        if (langSelect) {
+            langSelect.value = currentLang;
+            langSelect.onchange = (e) => {
+                currentLang = e.target.value;
                 localStorage.setItem('kfood_lang', currentLang);
                 updateUI();
-                location.reload(); // Reload to refresh firebase snapshot with new language texts if needed
+                location.reload();
             };
-        });
+        }
 
         updateUI();
 

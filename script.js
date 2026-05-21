@@ -86,10 +86,10 @@ const foodDB = [
     // [1] 밥/죽 (Rice/Porridge)
     { id:'r1', cat:'밥/죽', img:'rice/비빔밥.gif', name_ko:'비빔밥', name_en:'Bibimbap', name_ja:'ビビンバ', info_ko:'오행의 조화와 영양의 균형', info_en:'Harmony of five elements', info_ja:'五行の調和', desc_ko:'여러 가지 나물과 고기, 고추장을 넣어 비벼 먹는 한국의 대표 음식입니다.', desc_en:'A representative Korean dish mixed with various vegetables, meat, and red pepper paste.', desc_ja:'さまざまなナムル、肉、コチュジャンを混ぜて食べる韓国の代表的な料理です。' },
     { id:'r2', cat:'밥/죽', img:'rice/전복죽.gif', name_ko:'전복죽', name_en:'Abalone Porridge', name_ja:'アワビ粥', info_ko:'바다의 산삼, 전복의 정수', info_en:'Essence of abalone', info_ja:'アワビのエッセンス', desc_ko:'전복과 쌀을 함께 끓여낸 영양 가득한 보양식 죽입니다.', desc_en:'A nutritious porridge made by boiling abalone and rice together.', desc_ja:'アワビとお米を一緒に煮込んだ栄養たっぷりの滋養強壮粥です。' },
-    { id:'r3', cat:'밥/죽', img:'rice/김밥', name_ko:'김밥', name_en:'Gimbap', name_ja:'キンパ', info_ko:'소풍의 대명사, 국민 간식', info_en:'Classic picnic snack', info_ja:'ピクニックの定番', desc_ko:'김 위에 밥과 여러 속재료를 넣고 말아 한입 크기로 썬 음식입니다.', desc_en:'Rice and various ingredients rolled in seaweed and sliced into bite-sized pieces.', desc_ja:'海苔の上にご飯と具材をのせて巻き、一口大に切った料理です。' },
-    { id:'r4', cat:'밥/죽', img:'rice/곤드레밥', name_ko:'곤드레밥', name_en:'Gondre-bap', name_ja:'コンドゥレ飯', info_ko:'산나물의 향긋한 매력', info_en:'Fragrant wild greens', info_ja:'山菜の香り高い魅力', desc_ko:'곤드레 나물을 넣어 지은 건강한 풍미의 나물밥입니다.', desc_en:'A healthy rice dish cooked with seasoned thistle (Gondre).', desc_ja:'コンドゥレ（高麗アザミ）を入れて炊いた、健康的な香りの山菜ご飯です。' },
-    { id:'r5', cat:'밥/죽', img:'rice/호박죽', name_ko:'호박죽', name_en:'Pumpkin Porridge', name_ja:'かぼちゃ粥', info_ko:'달콤하고 부드러운 자연의 맛', info_en:'Sweet and smooth nature', info_ja:'甘くて滑らかな自然の味', desc_ko:'늙은 호박을 삶아 으깨어 찹쌀가루와 끓여낸 달콤한 죽입니다.', desc_en:'A sweet porridge made by boiling mashed aged pumpkin with glutinous rice flour.', desc_ja:'熟したかぼちゃを煮て潰し、もち米粉と一緒に炊き上げた甘いお粥です。' },
-    { id:'r6', cat:'밥/죽', img:'rice/김치볶음밥', name_ko:'김치볶음밥', name_en:'Kimchi Fried Rice', name_ja:'キムチ炒飯', info_ko:'매콤새콤한 한 끼 식사', info_en:'Spicy and tangy meal', info_ja:'ピリ辛で酸味のある食事', desc_ko:'잘 익은 김치를 잘게 썰어 밥과 함께 볶아낸 대중적인 음식입니다.', desc_en:'A popular dish made by frying finely chopped ripe kimchi with rice.', desc_ja:'熟成したキムチを細かく刻み、ご飯と一緒に炒めた大衆的な料理です。' },
+    { id:'r3', cat:'밥/죽', img:'rice/김밥.gif', name_ko:'김밥', name_en:'Gimbap', name_ja:'キンパ', info_ko:'소풍의 대명사, 국민 간식', info_en:'Classic picnic snack', info_ja:'ピクニックの定番', desc_ko:'김 위에 밥과 여러 속재료를 넣고 말아 한입 크기로 썬 음식입니다.', desc_en:'Rice and various ingredients rolled in seaweed and sliced into bite-sized pieces.', desc_ja:'海苔の上にご飯と具材をのせて巻き、一口大に切った料理です。' },
+    { id:'r4', cat:'밥/죽', img:'rice/곤드레밥.gif', name_ko:'곤드레밥', name_en:'Gondre-bap', name_ja:'コンドゥレ飯', info_ko:'산나물의 향긋한 매력', info_en:'Fragrant wild greens', info_ja:'山菜の香り高い魅力', desc_ko:'곤드레 나물을 넣어 지은 건강한 풍미의 나물밥입니다.', desc_en:'A healthy rice dish cooked with seasoned thistle (Gondre).', desc_ja:'コンドゥレ（高麗アザミ）を入れて炊いた、健康的な香りの山菜ご飯です。' },
+    { id:'r5', cat:'밥/죽', img:'rice/호박죽.gif', name_ko:'호박죽', name_en:'Pumpkin Porridge', name_ja:'かぼちゃ粥', info_ko:'달콤하고 부드러운 자연의 맛', info_en:'Sweet and smooth nature', info_ja:'甘くて滑らかな自然の味', desc_ko:'늙은 호박을 삶아 으깨어 찹쌀가루와 끓여낸 달콤한 죽입니다.', desc_en:'A sweet porridge made by boiling mashed aged pumpkin with glutinous rice flour.', desc_ja:'熟したかぼちゃを煮て潰し、もち米粉と一緒に炊き上げた甘いお粥です。' },
+    { id:'r6', cat:'밥/죽', img:'rice/김치볶음밥.gif', name_ko:'김치볶음밥', name_en:'Kimchi Fried Rice', name_ja:'キムチ炒飯', info_ko:'매콤새콤한 한 끼 식사', info_en:'Spicy and tangy meal', info_ja:'ピリ辛で酸味のある食事', desc_ko:'잘 익은 김치를 잘게 썰어 밥과 함께 볶아낸 대중적인 음식입니다.', desc_en:'A popular dish made by frying finely chopped ripe kimchi with rice.', desc_ja:'熟成したキムチを細かく刻み、ご飯と一緒に炒めた大衆的な料理です。' },
     { id:'r7', cat:'밥/죽', img:'rice/보리밥.gif', name_ko:'보리밥', name_en:'Barley Rice', name_ja:'麦飯', info_ko:'구수한 맛의 건강식', info_en:'Savory healthy rice', info_ja:'香ばしい味の健康食', desc_ko:'보리를 섞어 지은 밥으로 식이섬유가 풍부한 건강식입니다.', desc_en:'Rice cooked with barley, a healthy dish rich in dietary fiber.', desc_ja:'麦を混ぜて炊いたご飯で、食物繊維が豊富な健康食です。' },
     { id:'r8', cat:'밥/죽', img:'rice/오곡밥.gif', name_ko:'오곡밥', name_en:'Five-grain Rice', name_ja:'五穀米', info_ko:'다섯 곡물의 영양 조화', info_en:'Nutritional harmony of 5 grains', info_ja:'五穀の栄養の調和', desc_ko:'찹쌀, 팥, 수수 등 다섯 가지 곡물을 넣어 지은 풍성한 영양밥입니다.', desc_en:'A nutritious rice dish cooked with five grains such as glutinous rice and beans.', desc_ja:'もち米、あずき、きびなど5種類の穀物を入れて炊いた栄養満点のご飯です。' },
     { id:'r9', cat:'밥/죽', img:'rice/쌈밥.gif', name_ko:'쌈밥', name_en:'Ssambap', name_ja:'包みご飯', info_ko:'신선한 채소와 즐기는 한입', info_en:'Fresh vegetable wraps', info_ja:'新鮮な野菜の包みご飯', desc_ko:'여러 가지 잎채소에 밥과 장을 얹어 싸 먹는 건강한 한 끼입니다.', desc_en:'A healthy meal wrapped in various leaf vegetables with rice and sauce.', desc_ja:'さまざまな葉野菜にご飯と味噌をのせて包んで食べる健康的な食事です。' },
@@ -272,16 +272,16 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Language Switcher Logic
-    langBtns.forEach(btn => {
-        btn.onclick = () => {
-            langBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentLang = btn.dataset.lang;
+    const langSelect = document.getElementById('lang-select');
+    if (langSelect) {
+        langSelect.value = currentLang;
+        langSelect.onchange = (e) => {
+            currentLang = e.target.value;
             localStorage.setItem('kfood_lang', currentLang);
             updateUI(searchInput.value.trim());
             if(currentItem) showDetail(currentItem.id, false);
         };
-    });
+    }
 
     updateUI();
 
