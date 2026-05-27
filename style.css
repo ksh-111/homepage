@@ -333,8 +333,25 @@ main { min-height: 100vh; }
     .d-grid { flex-direction: column; }
     .p-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
 }
+.mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: #000; cursor: pointer; padding: 5px; }
+.mobile-menu-btn:focus { outline: 2px solid var(--ksh-blue); border-radius: 4px; }
+.p-card:focus, .m-item:focus { outline: 3px solid var(--ksh-blue); box-shadow: 0 15px 30px rgba(0,0,0,0.1); transform: translateY(-10px); }
+
 @media (max-width: 768px) {
-    .nav-menu { display: none; }
+    .mobile-menu-btn { display: block; margin-left: auto; margin-right: 15px; }
+    .lang-switcher { margin-left: 0; }
+    .gnb-inner { flex-wrap: wrap; height: auto; padding: 15px 20px; }
+    .logo { margin-right: 0; }
+    .nav-menu { 
+        display: none; 
+        width: 100%; 
+        margin-top: 15px;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+    }
+    .nav-menu.active { display: block; }
+    .nav-menu ul { flex-direction: column; align-items: flex-start; gap: 5px; }
+    .nav-menu a { font-size: 1rem; display: block; width: 100%; padding: 10px 0; }
     .h-title { font-size: 3rem; }
 }
 

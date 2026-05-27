@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         grid.innerHTML = items.map(item => `
-            <div class="p-card" data-id="${item.id}">
+            <div class="p-card" data-id="${item.id}" tabindex="0" role="button" aria-label="${item[`name_${currentLang}`]} 상세 보기">
                 <div class="p-img" style="background:#f5f5f5; height:180px; border-radius:18px; margin-bottom:15px; overflow:hidden;">
                     <img src="${item.img}" alt="${item[`name_${currentLang}`]}" style="width:100%; height:100%; object-fit:cover;">
                 </div>
@@ -326,9 +326,27 @@ document.addEventListener('DOMContentLoaded', () => {
         currentItem = null;
     };
 
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    if (mobileMenuBtn) {
+        mobileMenuBtn.onclick = () => {
+            const navMenu = document.querySelector('.nav-menu');
+            if(navMenu) navMenu.classList.toggle('active');
+        };
+    }
+
     document.addEventListener('click', (e) => {
         const card = e.target.closest('.p-card');
         if(card) showDetail(card.dataset.id);
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') {
+            const card = e.target.closest('.p-card');
+            if(card) {
+                e.preventDefault();
+                showDetail(card.dataset.id);
+            }
+        }
     });
 
     detailView.onclick = (e) => {
