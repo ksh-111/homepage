@@ -13,7 +13,7 @@ const i18n = {
         backBtn: '뒤로가기',
         premiumTag: 'K-FOOD 프리미엄 선정',
         shareBtnLabel: '지식 가져가기',
-        supportTitle: '고객지원 게시판',
+        supportTitle: '게시판',
         supportDesc: '아카이브에 추가하고 싶은 음식이 있거나 서비스에 대해 궁금한 점이 있으시면 자유롭게 글을 남겨주세요.',
         writeBtn: '글쓰기',
         backToList: '목록으로',
@@ -23,7 +23,7 @@ const i18n = {
         postSubmit: '작성 완료',
         postIsPrivate: '비밀글로 설정하기',
         postPwLabel: '비밀번호 (4자리 영문/숫자)',
-        nav: { rice:'밥/죽', soup:'국/탕', stew:'찌개/전골', steam:'찜/조림', meat:'고기구이', pancake:'전/부침', noodle:'면/만두', snack:'분식/간식', kimchi:'김치/반찬', dessert:'전통디저트', support:'고객지원' },
+        nav: { rice:'밥/죽', soup:'국/탕', stew:'찌개/전골', steam:'찜/조림', meat:'고기구이', pancake:'전/부침', noodle:'면/만두', snack:'분식/간식', kimchi:'김치/반찬', dessert:'전통디저트', support:'게시판' },
         sections: { rice:'밥 & 죽', soup:'국 & 탕', stew:'찌개 & 전골', steam:'찜 & 조림', meat:'고기구이', pancake:'전 & 부침', noodle:'면 & 만두', snack:'분식 & 간식', kimchi:'김치 & 반찬', dessert:'전통디저트' }
     },
     en: {

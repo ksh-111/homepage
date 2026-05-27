@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>고객지원 | K-FOOD ARCHIVE</title>
+    <title>게시판 | K-FOOD ARCHIVE</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,7 +70,7 @@
     <div class="support-wrapper">
         <div id="board-list-view">
             <div class="board-header">
-                <h1 class="board-title" id="board-title">고객지원 게시판</h1>
+                <h1 class="board-title" id="board-title">게시판</h1>
                 <button class="btn-write" id="show-write-form"><i class="fas fa-pen"></i> <span id="write-btn-label">글쓰기</span></button>
             </div>
             <p id="board-desc" style="margin-top:-20px; margin-bottom:30px; color:#666; font-weight:500;">
@@ -114,7 +114,10 @@
         </div>
 
         <div id="board-detail-view" class="post-detail-view">
-            <button class="btn-back-list" id="back-to-list-from-detail" style="margin-bottom:20px; padding:0"><i class="fas fa-arrow-left"></i> <span id="back-list-return">목록으로 돌아가기</span></button>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <button class="btn-back-list" id="back-to-list-from-detail" style="padding:0"><i class="fas fa-arrow-left"></i> <span id="back-list-return">목록으로 돌아가기</span></button>
+                <button class="btn-write" id="btn-edit-post" style="padding:8px 15px; font-size:0.9rem;">수정하기</button>
+            </div>
             <h2 id="view-title"></h2>
             <div style="color:#888; font-size:0.9rem; margin-top:10px;">
                 <span id="label-view-author">작성자:</span> <span id="view-author"></span> | <span id="view-date"></span>
@@ -125,11 +128,11 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, query, orderBy, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, query, orderBy, serverTimestamp, onSnapshot, updateDoc, doc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         const i18n = {
             ko: {
-                navHome: '홈으로 가기', supportTitle: '고객지원 게시판', supportDesc: '아카이브에 추가하고 싶은 음식이 있거나 서비스에 대해 궁금한 점이 있으시면 자유롭게 글을 남겨주세요.',
+                navHome: '홈으로 가기', supportTitle: '게시판', supportDesc: '아카이브에 추가하고 싶은 음식이 있거나 서비스에 대해 궁금한 점이 있으시면 자유롭게 글을 남겨주세요.',
                 writeBtn: '글쓰기', backToList: '목록으로', writeTitle: '게시글 작성', labelTitle: '제목', labelAuthor: '작성자',
                 privateText: '🔒 비밀글로 설정하기', labelPw: '비밀번호 (4자리 영문/숫자)', labelContent: '내용', submitBtn: '작성 완료',
                 phTitle: '제목을 입력하세요', phAuthor: '이름을 입력하세요', phPw: '비밀번호 설정', phContent: '문의 내용을 상세히 적어주세요',
@@ -222,6 +225,10 @@
         const isPrivateCheckbox = document.getElementById('post-is-private');
         const pwGroup = document.getElementById('pw-group');
 
+        let isEditing = false;
+        let editingDocId = null;
+        let editingDocData = null;
+
         const switchView = (v) => {
             listView.style.display = v === 'list' ? 'block' : 'none';
             writeView.style.display = v === 'write' ? 'block' : 'none';
@@ -229,7 +236,15 @@
             window.scrollTo(0,0);
         };
 
-        document.getElementById('show-write-form').onclick = () => switchView('write');
+        document.getElementById('show-write-form').onclick = () => {
+            isEditing = false;
+            editingDocId = null;
+            editingDocData = null;
+            supportForm.reset();
+            pwGroup.style.display = 'none';
+            document.getElementById('write-title').innerText = i18n[currentLang].writeTitle;
+            switchView('write');
+        };
         document.getElementById('back-to-list').onclick = () => switchView('list');
         document.getElementById('back-to-list-from-detail').onclick = () => switchView('list');
         isPrivateCheckbox.onchange = (e) => pwGroup.style.display = e.target.checked ? 'block' : 'none';
@@ -269,9 +284,35 @@
                     document.getElementById('view-author').innerText = docData.author;
                     document.getElementById('view-date').innerText = docData.timestamp ? new Date(docData.timestamp.seconds * 1000).toLocaleString() : '';
                     document.getElementById('view-content').innerText = docData.content;
+                    editingDocId = id;
+                    editingDocData = docData;
                     switchView('detail');
                 };
             });
+            
+            document.getElementById('btn-edit-post').onclick = () => {
+                const t = i18n[currentLang];
+                if(editingDocData.isPrivate) {
+                    const pw = prompt("글을 수정하려면 비밀번호를 입력하세요:");
+                    if (pw !== editingDocData.password) return alert(t.alertNoPw);
+                }
+                isEditing = true;
+                
+                document.getElementById('post-title').value = editingDocData.title;
+                document.getElementById('post-author').value = editingDocData.author;
+                document.getElementById('post-content').value = editingDocData.content;
+                isPrivateCheckbox.checked = editingDocData.isPrivate;
+                if(editingDocData.isPrivate) {
+                    document.getElementById('post-password').value = editingDocData.password;
+                    pwGroup.style.display = 'block';
+                } else {
+                    document.getElementById('post-password').value = "";
+                    pwGroup.style.display = 'none';
+                }
+                
+                document.getElementById('write-title').innerText = "게시글 수정";
+                switchView('write');
+            };
         }, (err) => {
             listContainer.innerHTML = `<div style="padding:50px; text-align:center; color:red;">Error: ${err.message}</div>`;
         });
@@ -286,18 +327,33 @@
                 btn.disabled = true;
                 btn.innerText = "...";
                 
-                await addDoc(collection(db, "support_posts"), {
-                    title: document.getElementById('post-title').value,
-                    author: document.getElementById('post-author').value,
-                    content: document.getElementById('post-content').value,
-                    isPrivate: isPrivateCheckbox.checked,
-                    password: isPrivateCheckbox.checked ? document.getElementById('post-password').value : "",
-                    timestamp: serverTimestamp()
-                });
+                if (isEditing && editingDocId) {
+                    await updateDoc(doc(db, "support_posts", editingDocId), {
+                        title: document.getElementById('post-title').value,
+                        author: document.getElementById('post-author').value,
+                        content: document.getElementById('post-content').value,
+                        isPrivate: isPrivateCheckbox.checked,
+                        password: isPrivateCheckbox.checked ? document.getElementById('post-password').value : ""
+                    });
+                    alert("게시글이 성공적으로 수정되었습니다.");
+                } else {
+                    await addDoc(collection(db, "support_posts"), {
+                        title: document.getElementById('post-title').value,
+                        author: document.getElementById('post-author').value,
+                        content: document.getElementById('post-content').value,
+                        isPrivate: isPrivateCheckbox.checked,
+                        password: isPrivateCheckbox.checked ? document.getElementById('post-password').value : "",
+                        timestamp: serverTimestamp()
+                    });
+                    alert(t.alertSuccess);
+                }
 
-                alert(t.alertSuccess);
                 supportForm.reset();
                 pwGroup.style.display = 'none';
+                isEditing = false;
+                editingDocId = null;
+                editingDocData = null;
+                document.getElementById('write-title').innerText = t.writeTitle;
                 switchView('list');
             } catch (err) {
                 console.error(err);
