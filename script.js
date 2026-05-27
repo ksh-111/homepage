@@ -323,6 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
         detailView.classList.remove('active');
         document.body.style.overflow = 'auto';
         if(history.state && history.state.view === 'detail') history.back();
+        currentItem = null;
     };
 
     document.addEventListener('click', (e) => {
