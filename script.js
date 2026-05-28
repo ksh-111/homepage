@@ -1,3 +1,17 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot, increment } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyD_ocC6LdqJ1HxK-5dga3HJ1r3Eap0lXHk",
+    authDomain: "kshfood-f4e24.firebaseapp.com",
+    projectId: "kshfood-f4e24",
+    storageBucket: "kshfood-f4e24.firebasestorage.app",
+    messagingSenderId: "433157257385",
+    appId: "1:433157257385:web:c5c6c713bf40f4c35091b8"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 // THE K-FOOD ARCHIVE - Multi-language Edition
 const i18n = {
     ko: {
@@ -287,6 +301,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchInput.addEventListener('input', (e) => updateUI(e.target.value.trim()));
 
+    let unsubscribeLike = null;
+
     const ingredients_ko = {
         'r1': '밥, 나물, 소고기, 고추장, 계란', 'r2': '전복, 쌀, 참기름', 'r3': '김, 밥, 단무지, 햄, 계란, 시금치', 'r4': '곤드레, 쌀, 들기름', 'r5': '늙은 호박, 찹쌀가루, 강낭콩', 'r6': '김치, 밥, 참기름', 'r7': '보리, 쌀', 'r8': '찹쌀, 팥, 수수, 차조, 검은콩', 'r9': '쌈채소, 밥, 쌈장', 'r10': '쌀',
         'q1': '미역, 소고기, 참기름, 국간장', 'q2': '소뼈(사골), 소고기, 대파', 'q3': '소고기, 고사리, 대파, 숙주나물, 고춧가루', 'q4': '소갈비, 대파, 당면', 'q5': '돼지 등뼈, 감자, 들깨가루, 우거지', 'q6': '어린 닭, 인삼, 찹쌀, 대추, 마늘', 'q7': '북어(명태), 무, 계란, 파', 'q8': '콩나물, 파, 마늘, 소금',
@@ -349,6 +365,40 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.getElementById('d-desc-target').innerHTML = `<strong>${t.detailHeader}</strong><br>${ingredientText}${item[`desc_${currentLang}`]}`;
         
+        // Likes logic 연동
+        const likeIcon = document.getElementById('like-icon');
+        const likeCount = document.getElementById('like-count');
+        const likeBtn = document.getElementById('btn-like-food');
+        
+        if(unsubscribeLike) unsubscribeLike();
+        const hasLiked = localStorage.getItem('liked_' + id);
+        likeIcon.className = hasLiked ? "fas fa-heart" : "far fa-heart";
+        likeCount.innerText = "...";
+        
+        unsubscribeLike = onSnapshot(doc(db, "food_likes", id), (docSnap) => {
+            if (docSnap.exists()) {
+                likeCount.innerText = docSnap.data().likes || 0;
+            } else {
+                likeCount.innerText = "0";
+            }
+        });
+        
+        likeBtn.onclick = async () => {
+            if (localStorage.getItem('liked_' + id)) {
+                alert(currentLang === 'ko' ? "이미 좋아요를 누르셨습니다!" : "Already liked!");
+                return;
+            }
+            likeIcon.className = "fas fa-heart";
+            likeCount.innerText = parseInt(likeCount.innerText === "..." ? "0" : likeCount.innerText) + 1;
+            localStorage.setItem('liked_' + id, 'true');
+            
+            try {
+                await setDoc(doc(db, "food_likes", id), { likes: increment(1) }, { merge: true });
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
         if(saveState) history.pushState({view: 'detail', id: id}, '', '');
         detailView.classList.add('active');
         document.body.style.overflow = 'hidden';
