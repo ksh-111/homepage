@@ -300,6 +300,32 @@ document.addEventListener('DOMContentLoaded', () => {
         'd1': '밀가루, 참기름, 꿀, 조청', 'd2': '엿기름, 쌀, 설탕, 잣', 'd3': '계피, 생강, 곶감, 잣', 'd4': '멥쌀가루, 깨/콩/팥 소, 솔잎', 'd5': '멥쌀가루, 꿀/설탕', 'd6': '찹쌀가루, 팥고물/콩고물', 'd7': '매실청, 물', 'd8': '건오미자, 물'
     };
 
+    const ingredients_en = {
+        'r1': 'Rice, Vegetables, Beef, Gochujang, Egg', 'r2': 'Abalone, Rice, Sesame oil', 'r3': 'Seaweed, Rice, Pickled radish, Ham, Egg, Spinach', 'r4': 'Thistle (Gondre), Rice, Perilla oil', 'r5': 'Aged pumpkin, Glutinous rice flour, Kidney beans', 'r6': 'Kimchi, Rice, Sesame oil', 'r7': 'Barley, Rice', 'r8': 'Glutinous rice, Red beans, Sorghum, Millet, Black beans', 'r9': 'Leaf wraps, Rice, Ssamjang', 'r10': 'Rice',
+        'q1': 'Seaweed, Beef, Sesame oil, Soup soy sauce', 'q2': 'Ox bone, Beef brisket, Green onion', 'q3': 'Beef, Bracken, Green onion, Bean sprouts, Red pepper powder', 'q4': 'Beef short ribs, Green onion, Glass noodles', 'q5': 'Pork backbone, Potatoes, Perilla seed powder, Cabbage leaves', 'q6': 'Young chicken, Ginseng, Glutinous rice, Jujube, Garlic', 'q7': 'Dried pollack, Radish, Egg, Green onion', 'q8': 'Bean sprouts, Green onion, Garlic, Salt',
+        's1': 'Kimchi, Pork, Tofu, Green onion', 's2': 'Soybean paste, Tofu, Zucchini, Clams', 's3': 'Beef tripe, Cabbage, Mushrooms, Red pepper powder', 's4': 'Tofu, Beef, Mushrooms, Vegetables', 's5': 'Dumplings, Broth, Vegetables, Mushrooms', 's6': 'Various mushrooms, Beef, Vegetables', 's7': 'Ham, Sausage, Kimchi, Ramen noodles', 's8': 'Soft tofu, Egg, Clams, Chili oil', 's9': 'Cheonggukjang, Tofu, Kimchi, Radish',
+        'm1': 'Beef short ribs, Soy sauce, Pear, Chestnut, Jujube', 'm2': 'Mackerel, Radish, Gochujang, Red pepper powder', 'm3': 'Hairtail, Radish, Red pepper powder, Green onion', 'm4': 'Chicken, Potatoes, Carrots, Gochujang', 'm5': 'Potatoes, Soy sauce, Corn syrup', 'm6': 'Tofu, Soy sauce, Red pepper powder, Onion', 'm7': 'Beef round, Soy sauce, Quail eggs', 'm8': 'Monkfish, Bean sprouts, Water dropwort, Red pepper powder',
+        'g1': 'Beef, Soy sauce, Pear juice, Onion', 'g2': 'Pork belly, Garlic, Ssamjang', 'g3': 'Pork ribs, Soy sauce marinade', 'g4': 'Chicken, Cabbage, Sweet potatoes, Rice cakes', 'g5': 'Pork (for boiling), Soybean paste, Garlic, Green onion', 'g6': 'Minced beef/pork, Soy sauce, Glutinous rice flour', 'g7': 'Pork, Gochujang, Onion', 'g8': 'Beef tripe, Chives, Garlic',
+        'p1': 'Chives, Seafood, Flour, Egg', 'p2': 'Aged kimchi, Flour batter', 'p3': 'Potatoes, Starch', 'p4': 'Pollack fillet, Flour, Egg', 'p5': 'Beef, Flour, Egg', 'p6': 'Mung beans, Pork, Bracken, Bean sprouts', 'p7': 'Zucchini, Flour, Egg',
+        'n1': 'Buckwheat noodles, Dongchimi broth, Radish, Pear, Egg', 'n2': 'Thin noodles, Gochujang sauce, Cucumber, Egg', 'n3': 'Wheat noodles, Clam broth, Zucchini', 'n4': 'Thin noodles, Anchovy broth, Zucchini, Egg garnish', 'n5': 'Buckwheat noodles, Spicy sauce, Sliced meat, Pear', 'n6': 'Noodles, Cold soybean soup, Cucumber', 'n7': 'Minced meat, Tofu, Bean sprouts, Dumpling wrappers',
+        'b1': 'Rice cakes, Fish cakes, Gochujang, Green onion', 'b2': 'Pork intestines, Glass noodles, Pig blood, Glutinous rice', 'b3': 'Seafood/Vegetables, Frying batter',
+        'k1': 'Napa cabbage, Red pepper powder, Garlic, Salted seafood, Radish', 'k2': 'Radish, Red pepper powder, Salted shrimp, Green onion', 'k3': 'Radish, Salt, Pear, Ginger', 'k4': 'Baby anchovies, Soy sauce/Gochujang, Corn syrup', 'k5': 'Spinach, Soup soy sauce, Sesame oil', 'k6': 'Bean sprouts, Salt, Sesame oil', 'k7': 'Glass noodles, Pork, Spinach, Vegetables', 'k8': 'Egg, Green onion, Carrots', 'k9': 'Young radish, Red pepper powder, Salted seafood', 'k10': 'Seafood, Salt, Red pepper powder', 'k11': 'Ponytail radish, Red pepper powder, Salted seafood', 'k12': 'Egg, Kelp broth, Salted shrimp',
+        'd1': 'Flour, Sesame oil, Honey, Grain syrup', 'd2': 'Malt, Rice, Sugar, Pine nuts', 'd3': 'Cinnamon, Ginger, Dried persimmon, Pine nuts', 'd4': 'Rice flour, Sesame/Bean/Red bean filling, Pine needles', 'd5': 'Rice flour, Honey/Sugar', 'd6': 'Glutinous rice flour, Red bean/Soybean powder', 'd7': 'Plum extract, Water', 'd8': 'Dried Omija, Water'
+    };
+
+    const ingredients_ja = {
+        'r1': 'ご飯、ナムル、牛肉、コチュジャン、卵', 'r2': 'アワビ、米、ごま油', 'r3': '海苔、ご飯、たくあん、ハム、卵、ほうれん草', 'r4': 'コンドゥレ、米、えごま油', 'r5': '熟したかぼちゃ、もち米粉、インゲン豆', 'r6': 'キムチ、ご飯、ごま油', 'r7': '麦、米', 'r8': 'もち米、小豆、たかきび、あわ、黒豆', 'r9': '包み野菜、ご飯、サムジャン', 'r10': '米',
+        'q1': 'わかめ、牛肉、ごま油、薄口醤油', 'q2': '牛骨、牛肉、長ねぎ', 'q3': '牛肉、ぜんまい、長ねぎ、もやし、粉唐辛子', 'q4': '牛カルビ、長ねぎ、春雨', 'q5': '豚の背骨、じゃがいも、えごまの粉、白菜の葉', 'q6': '若鶏、高麗人参、もち米、なつめ、にんにく', 'q7': '干しスケトウダラ、大根、卵、ねぎ', 'q8': '豆もやし、ねぎ、にんにく、塩',
+        's1': 'キムチ、豚肉、豆腐、長ねぎ', 's2': '味噌、豆腐、ズッキーニ、あさり', 's3': '牛ホルモン、白菜、きのこ、粉唐辛子', 's4': '豆腐、牛肉、きのこ、野菜', 's5': '餃子、スープ、野菜、きのこ', 's6': '各種きのこ、牛肉、野菜', 's7': 'ハム、ソーセージ、キムチ、ラーメン', 's8': 'おぼろ豆腐、卵、あさり、ラー油', 's9': 'チョングッチャン、豆腐、キムチ、大根',
+        'm1': '牛カルビ、醤油、梨、栗、なつめ', 'm2': 'サバ、大根、コチュジャン、粉唐辛子', 'm3': '太刀魚、大根、粉唐辛子、長ねぎ', 'm4': '鶏肉、じゃがいも、にんじん、コチュジャン', 'm5': 'じゃがいも、醤油、水あめ', 'm6': '豆腐、醤油、粉唐辛子、玉ねぎ', 'm7': '牛もも肉、醤油、うずらの卵', 'm8': 'アンコウ、豆もやし、セリ、粉唐辛子',
+        'g1': '牛肉、醤油、梨果汁、玉ねぎ', 'g2': '豚バラ肉、にんにく、サムジャン', 'g3': '豚カルビ、醤油タレ', 'g4': '鶏肉、キャベツ、さつまいも、餅', 'g5': '豚肉、味噌、にんにく、長ねぎ', 'g6': '牛・豚ひき肉、醤油、もち米粉', 'g7': '豚肉、コチュジャン、玉ねぎ', 'g8': '牛ホルモン、ニラ、にんにく',
+        'p1': 'わけぎ、海鮮、小麦粉、卵', 'p2': '熟成キムチ、小麦粉生地', 'p3': 'じゃがいも、でんぷん', 'p4': 'スケトウダラの切り身、小麦粉、卵', 'p5': '牛肉、小麦粉、卵', 'p6': '緑豆、豚肉、ぜんまい、もやし', 'p7': 'ズッキーニ、小麦粉、卵',
+        'n1': 'そば粉の麺、トンチミスープ、大根、梨、卵', 'n2': 'そうめん、コチュジャンタレ、きゅうり、卵', 'n3': '小麦粉の麺、あさりスープ、ズッキーニ', 'n4': 'そうめん、煮干しスープ、ズッキーニ、錦糸卵', 'n5': 'そば粉の麺、辛味タレ、ゆで肉、梨', 'n6': '麺、冷たい豆乳スープ、きゅうり', 'n7': 'ひき肉、豆腐、もやし、餃子の皮',
+        'b1': '餅、おでん、コチュジャン、ねぎ', 'b2': '豚の腸、春雨、豚の血、もち米', 'b3': '海鮮/野菜、天ぷら粉',
+        'k1': '白菜、粉唐辛子、にんにく、塩辛、大根', 'k2': '大根、粉唐辛子、アミの塩辛、ねぎ', 'k3': '大根、塩、梨、生姜', 'k4': 'ちりめんじゃこ、醤油/コチュジャン、水あめ', 'k5': 'ほうれん草、薄口醤油、ごま油', 'k6': '豆もやし、塩、ごま油', 'k7': '春雨、豚肉、ほうれん草、野菜', 'k8': '卵、ねぎ、にんじん', 'k9': '大根の若菜、粉唐辛子、塩辛', 'k10': '海鮮、塩、粉唐辛子', 'k11': 'チョンガク大根、粉唐辛子、塩辛', 'k12': '卵、昆布だし、アミの塩辛',
+        'd1': '小麦粉、ごま油、はちみつ、水あめ', 'd2': '麦芽、米、砂糖、松の実', 'd3': 'シナモン、生姜、干し柿、松の実', 'd4': 'うるち米粉、ごま/豆/小豆の餡、松の葉', 'd5': 'うるち米粉、はちみつ/砂糖', 'd6': 'もち米粉、小豆/きなこ', 'd7': '梅エキス、水', 'd8': '乾燥五味子、水'
+    };
+
     const showDetail = (id, saveState = true) => {
         const item = foodDB.find(f => f.id === id);
         if(!item) return;
@@ -315,6 +341,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let ingredientText = '';
         if (currentLang === 'ko' && ingredients_ko[id]) {
             ingredientText = `<div style="margin-bottom:15px; margin-top: 10px;"><span style="background:#eee; padding:4px 8px; border-radius:4px; font-weight:bold; font-size:0.9rem; color:#444;">🍳 주재료</span> <span style="font-size:0.95rem; color:#333; margin-left: 5px;">${ingredients_ko[id]}</span></div>`;
+        } else if (currentLang === 'en' && ingredients_en[id]) {
+            ingredientText = `<div style="margin-bottom:15px; margin-top: 10px;"><span style="background:#eee; padding:4px 8px; border-radius:4px; font-weight:bold; font-size:0.9rem; color:#444;">🍳 Main Ingredients</span> <span style="font-size:0.95rem; color:#333; margin-left: 5px;">${ingredients_en[id]}</span></div>`;
+        } else if (currentLang === 'ja' && ingredients_ja[id]) {
+            ingredientText = `<div style="margin-bottom:15px; margin-top: 10px;"><span style="background:#eee; padding:4px 8px; border-radius:4px; font-weight:bold; font-size:0.9rem; color:#444;">🍳 主材料</span> <span style="font-size:0.95rem; color:#333; margin-left: 5px;">${ingredients_ja[id]}</span></div>`;
         }
         
         document.getElementById('d-desc-target').innerHTML = `<strong>${t.detailHeader}</strong><br>${ingredientText}${item[`desc_${currentLang}`]}`;
@@ -376,6 +406,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if(e.state && e.state.view === 'detail') showDetail(e.state.id, false);
         else hideDetail();
     };
+
+    // Scroll to Top
+    const btnBackToTop = document.getElementById('btn-back-to-top');
+    if (btnBackToTop) {
+        window.addEventListener('scroll', () => {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btnBackToTop.style.display = 'flex';
+            } else {
+                btnBackToTop.style.display = 'none';
+            }
+        });
+        btnBackToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });
 
 

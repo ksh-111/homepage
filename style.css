@@ -365,3 +365,29 @@ main { min-height: 100vh; }
 /* Global Brand Update */
 .logo a, .d-logo { font-weight: 800; font-size: 1.6rem !important; letter-spacing: -0.5px; }
 .logo span, .d-logo span { color: var(--ksh-blue); }
+
+/* Scroll to Top Button */
+#btn-back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--ksh-blue);
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: 0.3s;
+}
+#btn-back-to-top:hover {
+    background: #1a6fd0;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}

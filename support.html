@@ -443,6 +443,22 @@
                 alert("답변 등록 중 오류가 발생했습니다: " + err.message);
             }
         };
+
+        // Scroll to Top
+        const btnBackToTop = document.getElementById('btn-back-to-top');
+        if (btnBackToTop) {
+            window.addEventListener('scroll', () => {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    btnBackToTop.style.display = 'flex';
+                } else {
+                    btnBackToTop.style.display = 'none';
+                }
+            });
+            btnBackToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
     </script>
+    <button id="btn-back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 </body>
 </html>
