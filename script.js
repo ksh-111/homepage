@@ -418,7 +418,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(t.shareAlert);
             const subject = encodeURIComponent(`${t.shareSubject}${currentItem[`name_${currentLang}`]}`);
             const body = encodeURIComponent(fullKnowledge);
-            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+            // 시스템 기본 메일 앱 대신 크롬 새 탭으로 구글 메일(Gmail) 띄우기
+            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=&su=${subject}&body=${body}`, '_blank');
         });
     };
 
