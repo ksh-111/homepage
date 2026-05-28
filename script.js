@@ -202,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Detail View Static Texts
         if(document.getElementById('back-btn-label')) document.getElementById('back-btn-label').innerText = t.backBtn;
-        if(document.getElementById('d-premium-target')) document.getElementById('d-premium-target').innerText = t.premiumTag;
         if(document.getElementById('share-btn-label')) document.getElementById('share-btn-label').innerText = t.shareBtnLabel;
     };
 
@@ -288,6 +287,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchInput.addEventListener('input', (e) => updateUI(e.target.value.trim()));
 
+    const ingredients_ko = {
+        'r1': '밥, 나물, 소고기, 고추장, 계란', 'r2': '전복, 쌀, 참기름', 'r3': '김, 밥, 단무지, 햄, 계란, 시금치', 'r4': '곤드레, 쌀, 들기름', 'r5': '늙은 호박, 찹쌀가루, 강낭콩', 'r6': '김치, 밥, 참기름', 'r7': '보리, 쌀', 'r8': '찹쌀, 팥, 수수, 차조, 검은콩', 'r9': '쌈채소, 밥, 쌈장', 'r10': '쌀',
+        'q1': '미역, 소고기, 참기름, 국간장', 'q2': '소뼈(사골), 소고기, 대파', 'q3': '소고기, 고사리, 대파, 숙주나물, 고춧가루', 'q4': '소갈비, 대파, 당면', 'q5': '돼지 등뼈, 감자, 들깨가루, 우거지', 'q6': '어린 닭, 인삼, 찹쌀, 대추, 마늘', 'q7': '북어(명태), 무, 계란, 파', 'q8': '콩나물, 파, 마늘, 소금',
+        's1': '김치, 돼지고기, 두부, 대파', 's2': '된장, 두부, 애호박, 바지락', 's3': '소 곱창, 배추, 버섯, 고춧가루', 's4': '두부, 소고기, 버섯, 채소', 's5': '만두, 육수, 채소, 버섯', 's6': '각종 버섯류, 소고기, 채소', 's7': '햄, 소시지, 김치, 라면사리', 's8': '순두부, 계란, 바지락, 고추기름', 's9': '청국장, 두부, 김치, 무',
+        'm1': '소갈비, 간장, 배, 밤, 대추', 'm2': '고등어, 무, 고추장, 고춧가루', 'm3': '갈치, 무, 고춧가루, 대파', 'm4': '닭고기, 감자, 당근, 고추장', 'm5': '감자, 간장, 물엿', 'm6': '두부, 간장, 고춧가루, 양파', 'm7': '소고기 홍두깨살, 간장, 메추리알', 'm8': '아귀, 콩나물, 미나리, 고춧가루',
+        'g1': '소고기, 간장, 배즙, 양파', 'g2': '돼지 삼겹살, 마늘, 쌈장', 'g3': '돼지갈비, 간장 양념', 'g4': '닭고기, 양배추, 고구마, 떡', 'g5': '돼지고기(수육용), 된장, 마늘, 대파', 'g6': '다진 소고기/돼지고기, 간장, 찹쌀가루', 'g7': '돼지고기, 고추장, 양파', 'g8': '소 곱창, 부추, 마늘',
+        'p1': '쪽파, 해산물, 밀가루, 계란', 'p2': '신김치, 밀가루 반죽', 'p3': '감자, 전분', 'p4': '동태 포, 밀가루, 계란', 'p5': '소고기, 밀가루, 계란', 'p6': '녹두, 돼지고기, 고사리, 숙주', 'p7': '애호박, 밀가루, 계란',
+        'n1': '메밀면, 동치미 육수(또는 고기 육수), 무, 배, 계란', 'n2': '소면, 고추장 양념, 오이, 계란', 'n3': '밀가루 면, 바지락(또는 고기) 육수, 호박', 'n4': '소면, 멸치 육수, 애호박, 지단', 'n5': '메밀면, 매운 비빔장, 편육, 배', 'n6': '국수, 콩물, 오이', 'n7': '다진 고기, 두부, 숙주나물, 만두피',
+        'b1': '가래떡, 어묵, 고추장, 파', 'b2': '돼지 창자, 당면, 선지, 찹쌀', 'b3': '해물/채소, 튀김가루',
+        'k1': '배추, 고춧가루, 마늘, 젓갈, 무', 'k2': '무, 고춧가루, 새우젓, 파', 'k3': '무, 소금, 배, 생강', 'k4': '잔멸치, 간장/고추장, 물엿', 'k5': '시금치, 국간장, 참기름', 'k6': '콩나물, 소금, 참기름', 'k7': '당면, 돼지고기, 시금치, 채소', 'k8': '계란, 파, 당근', 'k9': '열무, 고춧가루, 젓갈', 'k10': '해산물, 소금, 고춧가루', 'k11': '총각무, 고춧가루, 젓갈', 'k12': '계란, 다시마 육수, 새우젓',
+        'd1': '밀가루, 참기름, 꿀, 조청', 'd2': '엿기름, 쌀, 설탕, 잣', 'd3': '계피, 생강, 곶감, 잣', 'd4': '멥쌀가루, 깨/콩/팥 소, 솔잎', 'd5': '멥쌀가루, 꿀/설탕', 'd6': '찹쌀가루, 팥고물/콩고물', 'd7': '매실청, 물', 'd8': '건오미자, 물'
+    };
+
     const showDetail = (id, saveState = true) => {
         const item = foodDB.find(f => f.id === id);
         if(!item) return;
@@ -299,7 +311,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         document.getElementById('d-cat-target').innerText = item.cat;
         document.getElementById('d-name-target').innerText = item[`name_${currentLang}`];
-        document.getElementById('d-desc-target').innerHTML = `<strong>${t.detailHeader}</strong><br><br>${item[`desc_${currentLang}`]}`;
+        
+        let ingredientText = '';
+        if (currentLang === 'ko' && ingredients_ko[id]) {
+            ingredientText = `<div style="margin-bottom:15px; margin-top: 10px;"><span style="background:#eee; padding:4px 8px; border-radius:4px; font-weight:bold; font-size:0.9rem; color:#444;">🍳 주재료</span> <span style="font-size:0.95rem; color:#333; margin-left: 5px;">${ingredients_ko[id]}</span></div>`;
+        }
+        
+        document.getElementById('d-desc-target').innerHTML = `<strong>${t.detailHeader}</strong><br>${ingredientText}${item[`desc_${currentLang}`]}`;
         
         if(saveState) history.pushState({view: 'detail', id: id}, '', '');
         detailView.classList.add('active');
