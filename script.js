@@ -370,28 +370,33 @@ document.addEventListener('DOMContentLoaded', () => {
         const likeCount = document.getElementById('like-count');
         const likeBtn = document.getElementById('btn-like-food');
         
+        likeIcon.style.transition = "transform 0.2s"; // 애니메이션 효과 추가
+        
         if(unsubscribeLike) unsubscribeLike();
-        const hasLiked = localStorage.getItem('liked_' + id);
-        likeIcon.className = hasLiked ? "fas fa-heart" : "far fa-heart";
+        likeIcon.className = "far fa-heart"; 
         likeCount.innerText = "...";
         
         unsubscribeLike = onSnapshot(doc(db, "food_likes", id), (docSnap) => {
             if (docSnap.exists()) {
                 likeCount.innerText = docSnap.data().likes || 0;
+                if (docSnap.data().likes > 0) {
+                    likeIcon.className = "fas fa-heart";
+                }
             } else {
                 likeCount.innerText = "0";
             }
         });
         
         likeBtn.onclick = async () => {
-            if (localStorage.getItem('liked_' + id)) {
-                alert(currentLang === 'ko' ? "이미 좋아요를 누르셨습니다!" : "Already liked!");
-                return;
-            }
+            // 시각적 효과 (심장 뛰는 애니메이션)
             likeIcon.className = "fas fa-heart";
-            likeCount.innerText = parseInt(likeCount.innerText === "..." ? "0" : likeCount.innerText) + 1;
-            localStorage.setItem('liked_' + id, 'true');
+            likeIcon.style.transform = "scale(1.3)";
+            setTimeout(() => { likeIcon.style.transform = "scale(1)"; }, 200);
             
+            // 화면상 즉시 1 증가
+            likeCount.innerText = parseInt(likeCount.innerText === "..." ? "0" : likeCount.innerText) + 1;
+            
+            // 파이어베이스 데이터베이스 무제한 1 증가
             try {
                 await setDoc(doc(db, "food_likes", id), { likes: increment(1) }, { merge: true });
             } catch (e) {
