@@ -44,6 +44,17 @@
 
         .post-detail-view { display: none; background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 20px; }
         .p-content { white-space: pre-wrap; line-height: 1.6; margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; }
+        
+        .replies-section { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
+        .reply-item { background: #f9f9f9; padding: 15px; border-radius: 10px; margin-bottom: 10px; }
+        .reply-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; border-bottom:1px solid #ddd; padding-bottom:5px; }
+        .reply-author { font-weight: 700; color: #333; }
+        .reply-date { color: #888; }
+        .reply-content { white-space: pre-wrap; font-size: 0.95rem; line-height: 1.5; color: #555; }
+        .reply-form { margin-top: 20px; background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 10px; }
+        .reply-input-group { display: flex; flex-direction: column; gap: 10px; }
+        .reply-input-group input, .reply-input-group textarea { padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit; font-size:14px; }
+        .reply-row { display: flex; gap: 10px; }
     </style>
 </head>
 <body>
@@ -126,12 +137,27 @@
                 <span id="label-view-author">작성자:</span> <span id="view-author"></span> | <span id="view-date"></span>
             </div>
             <div class="p-content" id="view-content"></div>
+            
+            <div class="replies-section" id="replies-section">
+                <h3 id="label-replies" style="font-size:1.1rem; margin-bottom:15px; color:#333;">답변</h3>
+                <div id="replies-container"></div>
+                
+                <div class="reply-form">
+                    <div class="reply-input-group">
+                        <input type="text" id="reply-author" placeholder="답변자 이름" style="width: 150px;">
+                        <div class="reply-row">
+                            <textarea id="reply-content" placeholder="답변을 입력하세요" style="flex:1; min-height:60px;"></textarea>
+                            <button id="btn-submit-reply" class="btn-write" style="border-radius:8px;">등록</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, query, orderBy, serverTimestamp, onSnapshot, updateDoc, doc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, query, orderBy, serverTimestamp, onSnapshot, updateDoc, doc, arrayUnion } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         const i18n = {
             ko: {
@@ -232,6 +258,23 @@
         let editingDocId = null;
         let editingDocData = null;
 
+        const renderReplies = (replies) => {
+            const container = document.getElementById('replies-container');
+            if (!replies || replies.length === 0) {
+                container.innerHTML = '<div style="color:#888; font-size:0.9rem;">등록된 답변이 없습니다.</div>';
+                return;
+            }
+            container.innerHTML = replies.map(r => `
+                <div class="reply-item">
+                    <div class="reply-header">
+                        <span class="reply-author">${r.author}</span>
+                        <span class="reply-date">${new Date(r.date).toLocaleString()}</span>
+                    </div>
+                    <div class="reply-content">${r.content}</div>
+                </div>
+            `).join('');
+        };
+
         const switchView = (v) => {
             listView.style.display = v === 'list' ? 'block' : 'none';
             writeView.style.display = v === 'write' ? 'block' : 'none';
@@ -287,11 +330,23 @@
                     document.getElementById('view-author').innerText = docData.author;
                     document.getElementById('view-date').innerText = docData.timestamp ? new Date(docData.timestamp.seconds * 1000).toLocaleString() : '';
                     document.getElementById('view-content').innerText = docData.content;
+                    
+                    renderReplies(docData.replies || []);
+
                     editingDocId = id;
                     editingDocData = docData;
                     switchView('detail');
                 };
             });
+            
+            if (detailView.style.display === 'block' && editingDocId) {
+                const currentDoc = snapshot.docs.find(d => d.id === editingDocId);
+                if (currentDoc) {
+                    const docData = currentDoc.data();
+                    editingDocData = docData;
+                    renderReplies(docData.replies || []);
+                }
+            }
             
             document.getElementById('btn-edit-post').onclick = () => {
                 const t = i18n[currentLang];
@@ -364,6 +419,28 @@
             } finally {
                 btn.disabled = false;
                 btn.innerText = t.submitBtn;
+            }
+        };
+
+        document.getElementById('btn-submit-reply').onclick = async () => {
+            const author = document.getElementById('reply-author').value.trim();
+            const content = document.getElementById('reply-content').value.trim();
+            if (!author || !content) return alert('이름과 답변을 모두 입력하세요.');
+            
+            try {
+                const replyObj = {
+                    author,
+                    content,
+                    date: new Date().getTime()
+                };
+                await updateDoc(doc(db, "support_posts", editingDocId), {
+                    replies: arrayUnion(replyObj)
+                });
+                document.getElementById('reply-author').value = '';
+                document.getElementById('reply-content').value = '';
+            } catch (err) {
+                console.error(err);
+                alert("답변 등록 중 오류가 발생했습니다: " + err.message);
             }
         };
     </script>
